@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AUTOVERSE F1 Special Edition — explore Formula 1 cars, all 11 2026 teams and iconic circuits around the world.">
+<meta name="description" content="AUTOVERSE F1 Special Edition — an educational guide to Formula 1 cars, teams, drivers, circuits, race strategy and engineering.">
 <title>F1 Special Edition | AUTOVERSE</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="f1.css">
@@ -17,27 +17,28 @@
 </nav>
 </header>
 <main>
-<section class="f1-hero">
-<div class="f1-kicker">AUTOVERSE PRESENTS · MOTORSPORT SPECIAL</div>
+<section class="f1-hero" id="top">
+<div class="f1-kicker">AUTOVERSE PRESENTS · THE MOTORSPORT SPECIAL</div>
 <h1>BUILT TO RACE.<br><span>BORN TO WIN.</span></h1>
-<p>Explore the machines, teams and legendary racing circuits that make Formula 1 a truly global championship.</p>
-<div class="hero-actions"><a class="btn primary" href="#teams">Meet the teams</a><a class="btn" href="#circuits">Explore world circuits</a></div>
+<p>Enter the world of Formula 1. Discover the engineering, teams, circuits and racing stories that make the pinnacle of motorsport extraordinary.</p>
+<div class="hero-actions"><a class="btn primary" href="#explore-f1">Explore F1</a><a class="btn" href="#technology">Discover the technology</a></div>
 <div class="f1-hero-photo" role="img" aria-label="Formula-style racing car on a circuit"></div>
 </section>
 
-<section class="section" id="cars">
-<div class="f1-kicker">ENGINEERING ON FOUR WHEELS</div><h2 class="section-title">THE F1 MACHINES</h2>
-<p class="intro">A modern Formula 1 car is a finely engineered single-seater. Aerodynamics, hybrid power, tyres, braking and driver controls work together as one system.</p>
-<div class="f1-feature-grid">
-<article class="f1-feature"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85" alt="High-performance racing-inspired car" loading="lazy"><div><span>01 / AERODYNAMICS</span><h3>Airflow & downforce</h3><p>Wings and bodywork shape airflow to create grip while managing drag.</p></div></article>
-<article class="f1-feature"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=85" alt="Motorsport engineering detail" loading="lazy"><div><span>02 / POWER UNIT</span><h3>Hybrid performance</h3><p>F1 power units combine combustion and electrical technology. The 2026 regulations introduce a new generation of hybrid systems.</p></div></article>
-<article class="f1-feature"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=85" alt="Performance vehicle detail" loading="lazy"><div><span>03 / TYRES & BRAKES</span><h3>Grip and control</h3><p>Tyre temperature, braking balance and track conditions influence every lap.</p></div></article>
+<section class="section" id="explore-f1">
+<div class="f1-kicker">THE WORLD OF FORMULA 1</div><h2 class="section-title">ENTER THE GRID</h2>
+<p class="intro">Explore the major parts of the Formula 1 universe, from the teams in the garage to the circuits around the world.</p>
+<div class="f1-grid">
+<a class="f1-card" href="#cars"><div class="f1-number">🏎️ &nbsp; 01 / MACHINES</div><h3>F1 Cars</h3><p>Learn about open-wheel design, chassis, tyres, power units and the engineering choices behind a modern Grand Prix car.</p></a>
+<a class="f1-card" href="#teams"><div class="f1-number">🏁 &nbsp; 02 / CONSTRUCTORS</div><h3>Teams</h3><p>Explore the constructors, their identities, racing heritage and the people who bring each car to the grid.</p></a>
+<a class="f1-card" href="#drivers"><div class="f1-number">🧑‍🚀 &nbsp; 03 / TALENT</div><h3>Drivers</h3><p>Discover the skill set of an F1 driver: precision, consistency, racecraft, fitness and split-second decision-making.</p></a>
+<a class="f1-card" href="#circuits"><div class="f1-number">🌍 &nbsp; 04 / DESTINATIONS</div><h3>Circuits</h3><p>Explore famous Grand Prix venues and how corners, straights, elevation and surface shape a race weekend.</p></a>
 </div>
 </section>
 
 <section class="section" id="teams">
-<div class="f1-kicker">2026 FIA FORMULA ONE GRID</div><h2 class="section-title">MEET THE 11 TEAMS</h2>
-<p class="intro">Explore the teams competing in the 2026 championship. Team names and driver line-ups can change between seasons.</p>
+<div class="f1-kicker">THE PEOPLE AND THE ENGINEERING · TEAM CULTURE</div><h2 class="section-title">CONSTRUCTORS & GARAGES</h2>
+<p class="intro">Each team combines designers, engineers, mechanics, strategists and drivers to prepare a competitive car. Explore the 2026 grid below.</p>
 <div class="f1-team-grid">
 <article class="f1-team"><div class="team-art team-mclaren">MCL</div><div class="team-copy"><span>UNITED KINGDOM</span><h3>McLaren</h3><p>Lando Norris · Oscar Piastri</p></div></article>
 <article class="f1-team"><div class="team-art team-mercedes">AMG</div><div class="team-copy"><span>GERMANY</span><h3>Mercedes</h3><p>George Russell · Kimi Antonelli</p></div></article>
@@ -53,49 +54,83 @@
 </div>
 </section>
 
+<section class="section" id="drivers">
+<div class="f1-kicker">RACE WEEKEND · RACECRAFT</div><h2 class="section-title">THE DRIVERS</h2>
+<p class="intro">Drivers combine physical preparation, technical feedback, precision and calm decision-making at extraordinary speeds.</p>
+<div class="f1-grid">
+<article class="f1-card"><div class="f1-number">01 / PRECISION</div><h3>Control every corner</h3><p>Braking points, racing lines and throttle control help drivers find consistency lap after lap.</p></article>
+<article class="f1-card"><div class="f1-number">02 / TEAMWORK</div><h3>Driver & engineer</h3><p>Clear radio communication and detailed feedback help engineers understand how the car behaves.</p></article>
+<article class="f1-card"><div class="f1-number">03 / PERFORMANCE</div><h3>Focus under pressure</h3><p>Fitness, concentration and quick decisions matter throughout practice, qualifying and the Grand Prix.</p></article>
+</div>
+</section>
+
+<section class="section" id="cars">
+<div class="f1-kicker">01 / MACHINES · PRECISION ENGINEERING</div><h2 class="section-title">F1 CARS</h2>
+<p class="intro">A Formula 1 car is a purpose-built open-wheel racing machine. Its chassis, aerodynamics, hybrid power unit, tyres and braking systems work together as one package.</p>
+<div class="f1-feature-grid">
+<article class="f1-feature"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85" alt="High-performance car detail" loading="lazy"><div><span>CHASSIS & DESIGN</span><h3>Built around the driver</h3><p>The survival cell forms the central structure, with carefully engineered components arranged around it.</p></div></article>
+<article class="f1-feature"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=85" alt="Engineering and technology detail" loading="lazy"><div><span>POWER UNIT</span><h3>Hybrid performance</h3><p>Modern F1 power units combine an internal-combustion engine with energy recovery and electrical systems.</p></div></article>
+<article class="f1-feature"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=85" alt="Performance vehicle detail" loading="lazy"><div><span>TYRES & BRAKES</span><h3>Grip and control</h3><p>Tyre temperature, braking balance and track conditions influence performance throughout a lap.</p></div></article>
+</div>
+</section>
+
 <section class="section" id="circuits">
-<div class="f1-kicker">RACING WITHOUT BORDERS</div><h2 class="section-title">CIRCUITS AROUND THE WORLD</h2>
+<div class="f1-kicker">04 / DESTINATIONS · RACING WITHOUT BORDERS</div><h2 class="section-title">CIRCUITS AROUND THE WORLD</h2>
 <p class="intro">From fast permanent tracks to challenging city circuits, explore famous Grand Prix destinations across the globe.</p>
 <div class="f1-circuit-grid">
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80" alt="Australian Grand Prix circuit atmosphere" loading="lazy"><div><span>AUSTRALIA</span><h3>Albert Park</h3><p>Melbourne · Street-circuit roads around a lake park.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80" alt="Shanghai Grand Prix racing atmosphere" loading="lazy"><div><span>CHINA</span><h3>Shanghai International Circuit</h3><p>Shanghai · Famous for its long opening turns.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=80" alt="Suzuka racing circuit atmosphere" loading="lazy"><div><span>JAPAN</span><h3>Suzuka</h3><p>Suzuka · Iconic figure-eight layout and flowing corners.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Miami Grand Prix city atmosphere" loading="lazy"><div><span>UNITED STATES</span><h3>Miami International Autodrome</h3><p>Miami Gardens · A modern circuit around the stadium complex.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="Canadian Grand Prix racing atmosphere" loading="lazy"><div><span>CANADA</span><h3>Circuit Gilles-Villeneuve</h3><p>Montreal · A fast island circuit with famous chicanes.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="Monaco Grand Prix city atmosphere" loading="lazy"><div><span>MONACO</span><h3>Circuit de Monaco</h3><p>Monte Carlo · Narrow streets and legendary corners.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80" alt="Barcelona racing venue atmosphere" loading="lazy"><div><span>SPAIN</span><h3>Barcelona-Catalunya</h3><p>Montmeló · A varied mix of corners and straights.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80" alt="Austrian Grand Prix mountain scenery" loading="lazy"><div><span>AUSTRIA</span><h3>Red Bull Ring</h3><p>Spielberg · Short lap with elevation changes.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="British Grand Prix countryside atmosphere" loading="lazy"><div><span>UNITED KINGDOM</span><h3>Silverstone</h3><p>Northamptonshire · High-speed corners and racing history.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80" alt="Belgian Grand Prix forest landscape" loading="lazy"><div><span>BELGIUM</span><h3>Spa-Francorchamps</h3><p>Stavelot · Forest setting and the famous Eau Rouge-Raidillon.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80" alt="Hungarian Grand Prix landscape" loading="lazy"><div><span>HUNGARY</span><h3>Hungaroring</h3><p>Mogyoród · A technical circuit with a flowing sequence of turns.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Dutch Grand Prix coastal landscape" loading="lazy"><div><span>NETHERLANDS</span><h3>Zandvoort</h3><p>Zandvoort · Banked corners close to the North Sea coast.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Italian Grand Prix park landscape" loading="lazy"><div><span>ITALY</span><h3>Monza</h3><p>Monza · The Temple of Speed, known for long straights.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80" alt="Madrid city skyline" loading="lazy"><div><span>SPAIN</span><h3>Madrid Street Circuit</h3><p>Madrid · New planned Grand Prix destination for 2026.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80" alt="Baku city skyline" loading="lazy"><div><span>AZERBAIJAN</span><h3>Baku City Circuit</h3><p>Baku · Long straight beside a tight historic-city section.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80" alt="Australian Grand Prix atmosphere" loading="lazy"><div><span>AUSTRALIA</span><h3>Albert Park</h3><p>Melbourne · A parkland street circuit.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80" alt="Shanghai racing atmosphere" loading="lazy"><div><span>CHINA</span><h3>Shanghai International Circuit</h3><p>Shanghai · Famous for its long opening turns.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=80" alt="Suzuka racing atmosphere" loading="lazy"><div><span>JAPAN</span><h3>Suzuka</h3><p>Suzuka · Iconic figure-eight layout.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Miami city atmosphere" loading="lazy"><div><span>UNITED STATES</span><h3>Miami International Autodrome</h3><p>Miami Gardens · A modern circuit around a stadium complex.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="Canadian Grand Prix atmosphere" loading="lazy"><div><span>CANADA</span><h3>Circuit Gilles-Villeneuve</h3><p>Montreal · A fast island circuit with famous chicanes.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="Monaco city atmosphere" loading="lazy"><div><span>MONACO</span><h3>Circuit de Monaco</h3><p>Monte Carlo · Narrow streets and legendary corners.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80" alt="Barcelona racing atmosphere" loading="lazy"><div><span>SPAIN</span><h3>Barcelona-Catalunya</h3><p>Montmeló · A mix of corners and straights.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80" alt="Austrian mountain landscape" loading="lazy"><div><span>AUSTRIA</span><h3>Red Bull Ring</h3><p>Spielberg · A short lap with elevation changes.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="British countryside" loading="lazy"><div><span>UNITED KINGDOM</span><h3>Silverstone</h3><p>Northamptonshire · High-speed corners and racing history.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80" alt="Belgian forest landscape" loading="lazy"><div><span>BELGIUM</span><h3>Spa-Francorchamps</h3><p>Stavelot · Forest setting and famous elevation changes.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Hungarian landscape" loading="lazy"><div><span>HUNGARY</span><h3>Hungaroring</h3><p>Mogyoród · A technical sequence of turns.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Dutch coastal landscape" loading="lazy"><div><span>NETHERLANDS</span><h3>Zandvoort</h3><p>Zandvoort · Banked corners near the North Sea.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Italian park landscape" loading="lazy"><div><span>ITALY</span><h3>Monza</h3><p>Monza · The Temple of Speed.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80" alt="Baku city skyline" loading="lazy"><div><span>AZERBAIJAN</span><h3>Baku City Circuit</h3><p>Baku · A long straight beside a tight old-city section.</p></div></article>
 <article class="f1-circuit"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80" alt="Singapore skyline at night" loading="lazy"><div><span>SINGAPORE</span><h3>Marina Bay Street Circuit</h3><p>Singapore · A spectacular night race through the city.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=80" alt="Austin city landscape" loading="lazy"><div><span>UNITED STATES</span><h3>Circuit of The Americas</h3><p>Austin · Known for its steep uphill approach to Turn 1.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=900&q=80" alt="Mexico City skyline" loading="lazy"><div><span>MEXICO</span><h3>Autódromo Hermanos Rodríguez</h3><p>Mexico City · High altitude and a stadium-section atmosphere.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80" alt="São Paulo city skyline" loading="lazy"><div><span>BRAZIL</span><h3>Interlagos</h3><p>São Paulo · An anti-clockwise circuit with dramatic elevation changes.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=80" alt="Austin city landscape" loading="lazy"><div><span>UNITED STATES</span><h3>Circuit of The Americas</h3><p>Austin · Known for its steep uphill first turn.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=900&q=80" alt="Mexico City skyline" loading="lazy"><div><span>MEXICO</span><h3>Autódromo Hermanos Rodríguez</h3><p>Mexico City · High altitude and a stadium atmosphere.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80" alt="São Paulo city skyline" loading="lazy"><div><span>BRAZIL</span><h3>Interlagos</h3><p>São Paulo · An anti-clockwise circuit with elevation changes.</p></div></article>
 <article class="f1-circuit"><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80" alt="Las Vegas skyline at night" loading="lazy"><div><span>UNITED STATES</span><h3>Las Vegas Strip Circuit</h3><p>Las Vegas · Night racing along the famous Strip.</p></div></article>
 <article class="f1-circuit"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80" alt="Qatar desert landscape" loading="lazy"><div><span>QATAR</span><h3>Lusail International Circuit</h3><p>Lusail · A flowing modern circuit under floodlights.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80" alt="Abu Dhabi skyline" loading="lazy"><div><span>UNITED ARAB EMIRATES</span><h3>Yas Marina</h3><p>Abu Dhabi · A waterfront circuit with a dramatic season finale setting.</p></div></article>
-<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Bahrain desert landscape" loading="lazy"><div><span>BAHRAIN</span><h3>Bahrain International Circuit</h3><p>Sakhir · Desert circuit with heavy braking zones.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80" alt="Abu Dhabi skyline" loading="lazy"><div><span>UNITED ARAB EMIRATES</span><h3>Yas Marina</h3><p>Abu Dhabi · A waterfront Grand Prix destination.</p></div></article>
+<article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" alt="Bahrain desert landscape" loading="lazy"><div><span>BAHRAIN</span><h3>Bahrain International Circuit</h3><p>Sakhir · A desert circuit with heavy braking zones.</p></div></article>
 <article class="f1-circuit"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Jeddah coastal landscape" loading="lazy"><div><span>SAUDI ARABIA</span><h3>Jeddah Corniche Circuit</h3><p>Jeddah · A fast street circuit beside the Red Sea.</p></div></article>
 </div>
-<p class="f1-note">Circuit gallery includes current and historic Grand Prix venues; not every circuit shown is on the 2026 race calendar. Images are illustrative photo references. AUTOVERSE is an independent fan project and is not affiliated with Formula 1, the FIA or any racing team.</p>
+<p class="f1-note">This educational gallery includes current and historic Grand Prix venues; not every circuit shown is on the current race calendar. Images are illustrative references, not verified photographs of each venue.</p>
+</section>
+
+<section class="section" id="paddock">
+<div class="f1-kicker">THE PEOPLE AND THE ENGINEERING</div><h2 class="section-title">INSIDE THE PADDOCK</h2>
+<div class="f1-grid">
+<article class="f1-card"><div class="f1-number">TEAM CULTURE</div><h3>Constructors & Garages</h3><p>Each team combines designers, engineers, mechanics, strategists and drivers to prepare a competitive car.</p></article>
+<article class="f1-card"><div class="f1-number">RACE WEEKEND</div><h3>Practice to Grand Prix</h3><p>A race weekend involves preparation, qualifying, strategy calls, pit stops and the Grand Prix itself. Formats can vary by event.</p></article>
+<article class="f1-card"><div class="f1-number">RACECRAFT</div><h3>Strategy & Pit Stops</h3><p>Teams make decisions about tyre choice, timing, traffic, weather and changing race conditions.</p></article>
+</div>
 </section>
 
 <section class="section" id="technology">
 <div class="f1-kicker">PRECISION ENGINEERING</div><h2 class="section-title">THE TECHNOLOGY OF SPEED</h2>
 <div class="f1-grid">
 <article class="f1-card"><div class="f1-number">AERODYNAMICS</div><h3>Airflow & Downforce</h3><p>Wings and bodywork manage airflow to balance aerodynamic grip, drag and stability.</p></article>
-<article class="f1-card"><div class="f1-number">POWER UNIT</div><h3>Hybrid Engineering</h3><p>Formula 1 power units combine an internal-combustion engine with electrical systems.</p></article>
-<article class="f1-card"><div class="f1-number">TYRE MANAGEMENT</div><h3>Grip & Degradation</h3><p>Tyre behaviour changes with temperature, load, track surface and driving style.</p></article>
-<article class="f1-card"><div class="f1-number">SAFETY</div><h3>Driver Protection</h3><p>Survival cells, barriers, protective equipment and strict procedures help protect drivers.</p></article>
+<article class="f1-card"><div class="f1-number">POWER UNIT</div><h3>Hybrid Engineering</h3><p>Formula 1 power units combine an internal-combustion engine with energy recovery and electrical systems. Regulations evolve over time.</p></article>
+<article class="f1-card"><div class="f1-number">TYRE MANAGEMENT</div><h3>Grip & Degradation</h3><p>Tyre behaviour changes with temperature, load, track surface and driving style, making tyre management a key part of strategy.</p></article>
+<article class="f1-card"><div class="f1-number">SAFETY</div><h3>Driver Protection</h3><p>Survival cells, barriers, protective equipment and strict procedures are central to modern motorsport safety.</p></article>
 </div>
 </section>
-<p class="f1-note">2026 team information is based on the published 2026 entry list. Driver line-ups, technical rules and event calendars can change; check official sources for the latest updates.</p>
+
+<section class="section">
+<div class="f1-kicker">ONE LAP. A THOUSAND DETAILS.</div><h2 class="section-title">MORE THAN<br>JUST SPEED.</h2>
+<p class="intro">Formula 1 brings together engineering, teamwork, strategy and human performance. AUTOVERSE makes it easier to explore every part of that story.</p>
+<div class="hero-actions"><a class="btn primary" href="index.html">Back to AUTOVERSE</a><a class="btn" href="#top">Back to top ↑</a></div>
+</section>
 </main>
-<footer><strong>AUTOVERSE F1 SPECIAL EDITION</strong> · BUILT TO RACE. BORN TO WIN.</footer>
-<script src="data.js"></script><script src="app.js"></script></body>
+<footer><strong>AUTOVERSE F1 SPECIAL EDITION</strong> · BUILT TO RACE. BORN TO WIN.<p class="f1-note">This is an educational fan-style guide. Team line-ups, drivers, technical specifications, race calendars and regulations change between seasons. Check official Formula 1 and team sources for current-season information. AUTOVERSE is an independent project and is not affiliated with Formula 1 or any racing team.</p></footer>
+<script src="data.js"></script><script src="app.js"></script>
+</body>
 </html>
