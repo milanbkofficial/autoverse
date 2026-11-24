@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
+ // AUTOVERSE interactive detail cards and assistant are enabled on this page.
+
  const path=location.pathname.split("/").pop()||"index.html";
  document.querySelectorAll("nav a").forEach(a=>{if(a.getAttribute("href")===path)a.classList.add("active")});
  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
