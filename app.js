@@ -41,3 +41,98 @@ document.addEventListener("DOMContentLoaded",()=>{
  };chat.innerHTML+='<p>'+esc(a)+'</p>';input.value=""};
  const form=document.querySelector("#compare-form");if(form&&cars.length){const a=document.querySelector("#car-one"),b=document.querySelector("#car-two");[a,b].forEach(s=>cars.forEach(c=>s.add(new Option(c.name,c.id))));if(b.options.length>1)b.selectedIndex=1;form.onsubmit=e=>{e.preventDefault();const x=cars.find(c=>c.id===a.value),y=cars.find(c=>c.id===b.value);const rows=["brand","category","fuel","power","engine","transmission","price"];document.querySelector("#comparison").innerHTML='<table class="compare-table"><tr><th>Specification</th><th>'+esc(x.name)+'</th><th>'+esc(y.name)+'</th></tr>'+rows.map(k=>'<tr><th>'+k+'</th><td>'+esc(x[k])+'</td><td>'+esc(y[k])+'</td></tr>').join("")+'</table>'}}
 });
+
+// AUTOVERSE F1 INTERACTIVE EXPERIENCE
+document.addEventListener("DOMContentLoaded",()=>{
+  const page=document.querySelector(".f1-page");
+  if(!page)return;
+  const teams=[...document.querySelectorAll(".f1-team")];
+  const circuits=[...document.querySelectorAll(".f1-circuit")];
+  const safe=s=>String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const addTools=(section,items,label)=>{
+    if(!section||!items.length)return;
+    const tools=document.createElement("div");
+    tools.className="av-f1-tools";
+    tools.innerHTML='<label class="av-f1-search-label">'+label+' <input type="search" placeholder="Search '+label.toLowerCase()+'..." aria-label="Search '+label+'"></label><span class="av-f1-count" aria-live="polite"></span>';
+    const grid=items[0].parentElement;
+    section.insertBefore(tools,grid);
+    const input=tools.querySelector("input"),count=tools.querySelector(".av-f1-count");
+    const update=()=>{
+      const q=input.value.trim().toLowerCase();let shown=0;
+      items.forEach(card=>{
+        const match=card.textContent.toLowerCase().includes(q);
+        card.hidden=!match;if(match)shown++;
+      });
+      count.textContent=shown+" of "+items.length+" shown";
+    };
+    input.addEventListener("input",update);update();
+  };
+  addTools(document.querySelector("#teams"),teams,"Teams");
+  addTools(document.querySelector("#circuits"),circuits,"Circuits");
+  const modal=document.createElement("div");
+  modal.className="av-f1-modal";
+  modal.hidden=true;
+  modal.innerHTML='<div class="av-f1-modal-shade" data-f1-close></div><section role="dialog" aria-modal="true" aria-labelledby="av-f1-modal-title"><button type="button" data-f1-close aria-label="Close">×</button><div class="av-f1-modal-content"></div></section>';
+  document.body.append(modal);
+  const close=()=>{modal.hidden=true;};
+  modal.addEventListener("click",e=>{if(e.target.closest("[data-f1-close]"))close();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+  const openCard=(card,type)=>{
+    const title=card.querySelector("h3")?.textContent?.trim()||"F1 information";
+    const sub=card.querySelector("p")?.textContent?.trim()||"";
+    const label=card.querySelector("span")?.textContent?.trim()||"FORMULA 1";
+    const art=card.querySelector(".team-art");
+    const img=card.querySelector("img");
+    const content=modal.querySelector(".av-f1-modal-content");
+    content.innerHTML=(img?'<img class="av-f1-modal-image" src="'+safe(img.currentSrc||img.src)+'" alt="'+safe(title)+'">':art?'<div class="av-f1-modal-art">'+safe(art.textContent)+'</div>':'')+
+      '<div class="f1-kicker">'+safe(label)+'</div><h2 id="av-f1-modal-title">'+safe(title)+'</h2><p>'+safe(sub)+'</p><p class="av-f1-modal-note">'+(type==="team"?"Team details shown here are based on the AUTOVERSE F1 page. Driver line-ups can change during a season.":"Circuit descriptions are introductory. Check the official championship calendar for current event status.")+'</p>';
+    modal.hidden=false;
+    modal.querySelector("button").focus();
+  };
+  teams.forEach(card=>{
+    card.tabIndex=0;card.setAttribute("role","button");card.setAttribute("aria-label","View "+(card.querySelector("h3")?.textContent||"team")+" details");
+    card.addEventListener("click",()=>openCard(card,"team"));
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openCard(card,"team");}});
+  });
+  circuits.forEach(card=>{
+    card.tabIndex=0;card.setAttribute("role","button");card.setAttribute("aria-label","View "+(card.querySelector("h3")?.textContent||"circuit")+" details");
+    card.addEventListener("click",()=>openCard(card,"circuit"));
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openCard(card,"circuit");}});
+  });
+  const chatForm=document.querySelector(".av-ai form");
+  const chatInput=document.querySelector(".av-ai input");
+  const chat= document.querySelector(".av-ai .av-chat");
+  if(chatForm&&chatInput&&chat){
+    const previous=chatForm.onsubmit;
+    chatForm.onsubmit=e=>{
+      const q=chatInput.value.trim(),s=q.toLowerCase();
+      if(!/(formula.?1|\\bf1\\b|grand prix|ferrari|mclaren|mercedes|red bull|williams|haas|aston martin|racing bulls|alpine|audi|cadillac|circuit|pit stop|downforce|f1 car|f1 team)/i.test(s)){
+        if(previous)return previous.call(chatForm,e);
+        return;
+      }
+      e.preventDefault();
+      if(!q)return;
+      const teamCards=[...document.querySelectorAll(".f1-team")];
+      const circuitCards=[...document.querySelectorAll(".f1-circuit")];
+      let answer="";
+      const matchedTeam=teamCards.find(c=>s.includes(c.querySelector("h3")?.textContent.toLowerCase()||"~~~"));
+      const matchedCircuit=circuitCards.find(c=>s.includes(c.querySelector("h3")?.textContent.toLowerCase()||"~~~"));
+      if(matchedTeam){
+        answer=matchedTeam.querySelector("h3")?.textContent+" — "+matchedTeam.querySelector("p")?.textContent+". Open the team card on the F1 Edition page for its details.";
+      }else if(matchedCircuit){
+        answer=matchedCircuit.querySelector("h3")?.textContent+" — "+matchedCircuit.querySelector("p")?.textContent+". Open the circuit card to read its introduction.";
+      }else if(/team|driver|grid|line.?up/.test(s)){
+        answer="The AUTOVERSE F1 page lists the 11 teams and their driver pairings shown for the 2026 grid. Use the Teams search box to filter the grid, then select a team card for details. Driver line-ups may change, so verify the latest information with Formula 1.";
+      }else if(/circuit|track|calendar|grand prix|race/.test(s)){
+        answer="Explore the global circuit gallery on the AUTOVERSE F1 Edition page. Use its search box to find a circuit by name or country. The gallery includes current and historic venues; it is not a live race calendar.";
+      }else if(/car|machine|2026|power unit|engine|aero|downforce/.test(s)){
+        answer="A Formula 1 car combines advanced aerodynamics, a hybrid power unit, specialised tyres, powerful brakes and driver-safety systems. The 2026 regulations introduce a new generation of power-unit and aerodynamic rules. The F1 Edition page explains these technologies.";
+      }else{
+        answer="I can help you explore F1 teams, drivers, cars, circuits, Grand Prix venues, pit stops, tyres and racing technology. Try asking about a team or circuit listed on this page.";
+      }
+      const user=document.createElement("p");user.className="user";user.textContent=q;
+      const reply=document.createElement("p");reply.textContent=answer;
+      chat.append(user,reply);chatInput.value="";chat.scrollTop=chat.scrollHeight;
+    };
+  }
+});
