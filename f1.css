@@ -3,22 +3,35 @@
 .f1-page header{border-bottom-color:#482323}
 .f1-page nav a.active,.f1-page nav a:hover{color:#ff5b4d}
 .f1-page .logo span{color:#ff5b4d}
-.f1-hero{min-height:570px;position:relative;overflow:hidden;padding:clamp(30px,6vw,76px);border:1px solid #4a2828;border-radius:14px;background:linear-gradient(115deg,rgba(8,9,11,.97) 12%,rgba(8,9,11,.82) 55%,rgba(80,15,17,.62)),repeating-linear-gradient(135deg,#191b20 0 2px,#111318 2px 8px);display:flex;flex-direction:column;justify-content:center}
-.f1-hero:after{content:"";position:absolute;right:3%;top:14%;width:min(38vw,430px);height:260px;border:3px solid rgba(240,68,56,.4);border-left:0;border-right:0;transform:skewX(-28deg);box-shadow:0 16px 0 rgba(240,68,56,.12),0 32px 0 rgba(240,68,56,.08);pointer-events:none}
-.f1-hero h1{font-size:clamp(48px,8vw,100px);max-width:800px;letter-spacing:-4px;margin:18px 0}
+.f1-hero{min-height:570px;position:relative;overflow:hidden;padding:clamp(30px,6vw,76px);border:1px solid #4a2828;border-radius:14px;background:linear-gradient(110deg,rgba(8,9,11,.98) 8%,rgba(8,9,11,.78) 55%,rgba(80,15,17,.3)),url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1800&q=90') center/cover;display:flex;flex-direction:column;justify-content:center}
+.f1-hero h1{font-size:clamp(48px,8vw,100px);max-width:800px;letter-spacing:-4px;margin:18px 0;position:relative;z-index:1}
 .f1-hero h1 span,.f1-promo h2 span{color:#ff5148}
-.f1-hero p{max-width:620px;color:#c0c0c5;font-size:16px}
+.f1-hero p{max-width:620px;color:#e0e0e4;font-size:16px;position:relative;z-index:1}
+.f1-hero .hero-actions{position:relative;z-index:1}
 .f1-kicker{color:#ff5148;font-size:11px;letter-spacing:3px;font-weight:800;text-transform:uppercase}
 .f1-promo{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;border:1px solid #492626;border-radius:12px;background:radial-gradient(circle at 85% 50%,rgba(240,68,56,.2),transparent 30%),#111216;overflow:hidden}
 .f1-promo-copy{max-width:680px}.f1-promo h2{font-size:clamp(28px,4vw,44px);margin:12px 0}.f1-promo p{color:var(--muted);max-width:570px}
 .f1-mark{font-family:'Space Grotesk',sans-serif;font-size:clamp(100px,20vw,220px);font-weight:700;font-style:italic;line-height:1;color:rgba(240,68,56,.16);letter-spacing:-18px}
 .f1-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:24px}
 .f1-card{background:linear-gradient(145deg,#1a171a,#101115);border:1px solid #38282a;border-radius:9px;padding:22px;transition:.2s}
-.f1-card:hover{transform:translateY(-3px);border-color:#e84a43}
+.f1-card:hover,.f1-team:hover,.f1-circuit:hover,.f1-feature:hover{transform:translateY(-3px);border-color:#e84a43}
 .f1-card .f1-number{font-size:11px;color:#ff5148;letter-spacing:2px;font-weight:800}
 .f1-card h3{margin:12px 0 8px}.f1-card p{font-size:13px;color:#aeb0b8;line-height:1.7}
-.f1-symbol{height:116px;display:flex;align-items:center;justify-content:center;font-size:50px;background:radial-gradient(ellipse,rgba(240,68,56,.2),transparent 65%);border-bottom:1px solid #38282a;margin:-22px -22px 18px}
+.f1-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:25px}
+.f1-feature,.f1-team,.f1-circuit{overflow:hidden;background:linear-gradient(145deg,#1a171a,#101115);border:1px solid #38282a;border-radius:10px;transition:.2s}
+.f1-feature img{width:100%;height:190px;object-fit:cover;display:block}
+.f1-feature div{padding:18px}.f1-feature span,.f1-team span,.f1-circuit span{font-size:10px;color:#ff6258;letter-spacing:1.8px;font-weight:800}
+.f1-feature h3,.f1-circuit h3{margin:8px 0}.f1-feature p,.f1-circuit p,.f1-team p{color:#aeb0b8;font-size:13px;line-height:1.65;margin:6px 0}
+.f1-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin-top:24px}
+.f1-team{display:flex;min-height:115px;align-items:center;gap:14px;padding:13px}
+.team-art{width:78px;height:78px;flex:0 0 78px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(145deg,#272b33,#101216);border:1px solid #454b56;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:900;color:#fff;text-shadow:0 2px 10px #000;letter-spacing:-1px}
+.team-mclaren{border-bottom:4px solid #ff8700;color:#ff9a24}.team-mercedes{border-bottom:4px solid #00d7c2;color:#00d7c2}.team-redbull{border-bottom:4px solid #3156d8;color:#f5cf35}.team-ferrari{border-bottom:4px solid #f12838;color:#ff3444}.team-williams{border-bottom:4px solid #278bff;color:#55a7ff}.team-haas{border-bottom:4px solid #e5e5e5}.team-aston{border-bottom:4px solid #168b68;color:#44c99d}.team-rb{border-bottom:4px solid #83caff;color:#83caff;font-size:14px}.team-alpine{border-bottom:4px solid #f477c5;color:#f477c5}.team-audi{border-bottom:4px solid #e43b3b;color:#e43b3b}.team-cadillac{border-bottom:4px solid #d7c28a;color:#d7c28a;font-size:15px}
+.team-copy{min-width:0}.team-copy h3{margin:5px 0;font-size:17px}.team-copy p{margin:0;font-size:11px}
+.f1-circuit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px;margin-top:24px}
+.f1-circuit img{width:100%;height:145px;display:block;object-fit:cover}
+.f1-circuit div{padding:14px 16px 17px}.f1-circuit h3{font-size:18px}
 .f1-note{border:1px solid #57302f;background:rgba(240,68,56,.07);padding:14px 17px;border-radius:6px;color:#b7b4b7;font-size:12px;margin-top:24px}
 .f1-page .btn{border-color:#f04438}.f1-page .btn.primary{background:#f04438;border-color:#f04438;color:white}
 .f1-page footer{border-color:#38282a}
-@media(max-width:700px){.f1-hero{min-height:480px}.f1-hero:after{opacity:.35;right:-20%}.f1-mark{display:none}.f1-promo{padding:24px}}
+@media(max-width:850px){.f1-feature-grid{grid-template-columns:1fr 1fr}.f1-feature:last-child{grid-column:1/-1}}
+@media(max-width:600px){.f1-hero{min-height:470px;background-position:60% center}.f1-hero h1{letter-spacing:-1.5px}.f1-feature-grid{grid-template-columns:1fr}.f1-feature:last-child{grid-column:auto}.f1-mark{display:none}.f1-promo{padding:24px}}
