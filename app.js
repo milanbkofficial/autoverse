@@ -1,0 +1,1 @@
+function compareCars(){const a=document.getElementById('carA')?.value,b=document.getElementById('carB')?.value,out=document.getElementById('result');if(out)out.textContent=`Selected for comparison: ${a||'Car A'} vs ${b||'Car B'}. Add verified specifications before making a final decision.`}
