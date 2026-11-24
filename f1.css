@@ -35,3 +35,14 @@
 .f1-page footer{border-color:#38282a}
 @media(max-width:850px){.f1-feature-grid{grid-template-columns:1fr 1fr}.f1-feature:last-child{grid-column:1/-1}}
 @media(max-width:600px){.f1-hero{min-height:470px;background-position:60% center}.f1-hero h1{letter-spacing:-1.5px}.f1-feature-grid{grid-template-columns:1fr}.f1-feature:last-child{grid-column:auto}.f1-mark{display:none}.f1-promo{padding:24px}}
+
+
+/* AUTOVERSE F1 soundtrack player */
+.f1-audio-panel{position:relative;z-index:2;display:flex;align-items:center;gap:22px;flex-wrap:wrap;max-width:760px;margin:22px 0 8px;padding:16px 18px;border:1px solid #65302d;border-radius:10px;background:rgba(12,13,16,.88);backdrop-filter:blur(10px)}
+.f1-audio-panel>div{display:flex;flex-direction:column;gap:4px;min-width:180px}
+.f1-audio-label{font-size:9px;letter-spacing:2px;color:#ff6258;font-weight:800}
+.f1-audio-panel strong{font-size:17px;letter-spacing:1px}
+.f1-audio-panel>div small,.f1-audio-hint{font-size:11px;color:#aaaeb7}
+.f1-audio-panel audio{width:min(100%,390px);height:38px;accent-color:#f04438}
+.f1-audio-hint{flex-basis:100%;margin-top:-12px}
+@media(max-width:600px){.f1-audio-panel{gap:12px;padding:14px}.f1-audio-panel audio{width:100%}}
