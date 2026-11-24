@@ -1,18 +1,41 @@
 document.addEventListener("DOMContentLoaded",()=>{
  const path=location.pathname.split("/").pop()||"index.html";
  document.querySelectorAll("nav a").forEach(a=>{if(a.getAttribute("href")===path)a.classList.add("active")});
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const cars=window.CARS||[];
+ const modal=document.createElement("div");modal.className="av-modal";modal.id="av-modal";modal.innerHTML='<div class="av-modal-backdrop" data-close></div><section class="av-modal-box" role="dialog" aria-modal="true" aria-labelledby="av-modal-title"><button class="av-close" aria-label="Close" data-close>×</button><div id="av-modal-content"></div></section>';document.body.appendChild(modal);
+ const close=()=>{modal.classList.remove("open");document.body.classList.remove("av-lock")};
+ modal.addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))close()});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+ const open=(html)=>{document.querySelector("#av-modal-content").innerHTML=html;modal.classList.add("open");document.body.classList.add("av-lock")};
+ const carByName=name=>cars.find(c=>c.name.toLowerCase()===name.trim().toLowerCase()||name.toLowerCase().includes(c.name.toLowerCase()));
+ function carMarkup(c){return '<div class="av-detail"><img class="av-detail-image" src="'+esc(c.image)+'" alt="'+esc(c.name)+'"><div class="av-detail-copy"><div class="eyebrow">'+esc(c.brand)+' / '+esc(c.category)+'</div><h2 id="av-modal-title">'+esc(c.name)+'</h2><p>'+esc(c.description)+'</p><div class="av-spec-grid">'+[['Power',c.power],['Engine / motor',c.engine],['0–100 km/h',c.acceleration],['Top speed',c.topSpeed],['Transmission',c.transmission],['Fuel / energy',c.fuel],['Indicative price',c.price],['Seating',c.seating]].map(([k,v])=>'<div><small>'+esc(k)+'</small><strong>'+esc(v||"Check variant")+'</strong></div>').join("")+'</div><h3>Highlights</h3><p>'+esc((c.highlights||[]).join(" · "))+'</p><a class="btn primary" href="compare.html">Compare cars</a></div></div>'}
  const list=document.querySelector("[data-car-list]");
- if(list && window.CARS){
-  const render=(items)=>{list.innerHTML=items.map(c=>`<article class="card car-card"><div class="car-visual">🚘</div><div class="car-info"><div class="tag">${c.tag} / ${c.category}</div><h3>${c.name}</h3><p>${c.brand}</p><div class="specs"><span>${c.fuel}</span><span>${c.power}</span></div><a href="compare.html">Compare details →</a></div></article>`).join("")};
-  const search=document.querySelector("#car-search"),filter=document.querySelector("#category-filter");
-  const update=()=>render(CARS.filter(c=>(!search||c.name.toLowerCase().includes(search.value.toLowerCase())||c.brand.toLowerCase().includes(search.value.toLowerCase()))&&(!filter||filter.value==="all"||c.category.toLowerCase().includes(filter.value))));
-  if(search)search.addEventListener("input",update);if(filter)filter.addEventListener("change",update);update();
- }
+ if(list&&cars.length){const render=items=>{list.innerHTML=items.map(c=>'<article class="card car-card av-car-card" data-car-id="'+esc(c.id)+'" tabindex="0" role="button" aria-label="View '+esc(c.name)+' details"><img class="car-photo" src="'+esc(c.image)+'" alt="'+esc(c.name)+'" loading="lazy"><div class="car-info"><div class="tag">'+esc(c.tag)+' / '+esc(c.category)+'</div><h3>'+esc(c.name)+'</h3><p>'+esc(c.brand)+'</p><div class="specs"><span>'+esc(c.fuel)+'</span><span>'+esc(c.power)+'</span></div><span class="av-link">View full details ↗</span></div></article>').join("")};
+ const search=document.querySelector("#car-search"),filter=document.querySelector("#category-filter");
+ const update=()=>render(cars.filter(c=>(!search||c.name.toLowerCase().includes(search.value.toLowerCase())||c.brand.toLowerCase().includes(search.value.toLowerCase()))&&(!filter||filter.value==="all"||c.category.toLowerCase().includes(filter.value))));
+ if(search)search.addEventListener("input",update);if(filter)filter.addEventListener("change",update);update()}
  const compare=document.querySelector("#compare-form");
- if(compare && window.CARS){
-  const a=document.querySelector("#car-one"),b=document.querySelector("#car-two"),out=document.querySelector("#comparison");
-  [a,b].forEach(sel=>CARS.forEach(c=>sel.add(new Option(c.name,c.id))));
-  b.selectedIndex=1;
-  compare.addEventListener("submit",e=>{e.preventDefault();const x=CARS.find(c=>c.id===a.value),y=CARS.find(c=>c.id===b.value);const rows=[["Brand","brand"],["Category","category"],["Fuel","fuel"],["Power","power"],["Transmission","transmission"],["Indicative price range","price"]];out.innerHTML=`<table class="compare-table"><thead><tr><th>Specification</th><th>${x.name}</th><th>${y.name}</th></tr></thead><tbody>${rows.map(([label,key])=>`<tr><th>${label}</th><td>${x[key]}</td><td>${y[key]}</td></tr>`).join("")}</tbody></table><p class="notice">Information is illustrative and may vary by variant, model year and location. Verify current specifications with the manufacturer before making decisions.</p>`});
- }
+ if(compare&&cars.length){const a=document.querySelector("#car-one"),b=document.querySelector("#car-two"),out=document.querySelector("#comparison");[a,b].forEach(sel=>cars.forEach(c=>sel.add(new Option(c.name,c.id))));if(b&&b.options.length>1)b.selectedIndex=1;compare.addEventListener("submit",e=>{e.preventDefault();const x=cars.find(c=>c.id===a.value),y=cars.find(c=>c.id===b.value);if(!x||!y)return;const rows=[["Brand","brand"],["Category","category"],["Fuel / energy","fuel"],["Power","power"],["Engine / motor","engine"],["Transmission","transmission"],["0–100 km/h","acceleration"],["Top speed","topSpeed"],["Indicative price","price"]];out.innerHTML='<div class="av-compare-wrap"><h2>Comparison results</h2><table class="compare-table"><thead><tr><th>Specification</th><th>'+esc(x.name)+'</th><th>'+esc(y.name)+'</th></tr></thead><tbody>'+rows.map(([label,key])=>'<tr><th>'+label+'</th><td>'+esc(x[key])+'</td><td>'+esc(y[key])+'</td></tr>').join("")+'</tbody></table></div>'})}
+ document.addEventListener("click",e=>{const car=e.target.closest("[data-car-id]");if(car){const c=cars.find(x=>x.id===car.dataset.carId);if(c){open(carMarkup(c));return}}
+ const card=e.target.closest(".f1-card,main article.card");if(!card||e.target.closest("a,button,select,input"))return;
+ const heading=card.querySelector("h3,h2");if(!heading)return;
+ const c=carByName(heading.textContent);if(c){open(carMarkup(c));return}
+ const image=card.querySelector("img");const tag=card.querySelector(".tag,.f1-number");const p=card.querySelector("p");
+ open('<div class="av-generic-detail">'+(image?'<img class="av-detail-image" src="'+esc(image.src)+'" alt="">':'<div class="av-detail-symbol">AUTOVERSE</div>')+'<div class="eyebrow">'+esc(tag?.textContent||"DISCOVER AUTOVERSE")+'</div><h2 id="av-modal-title">'+esc(heading.textContent)+'</h2><p>'+esc(p?.textContent||"Discover more from AUTOVERSE.")+'</p><p class="av-modal-hint">Explore related sections using the navigation menu.</p><a class="btn primary" href="explore.html">Explore cars</a></div>');
+ });
+ document.querySelectorAll(".f1-card,main article.card").forEach(el=>{el.classList.add("av-clickable");el.setAttribute("tabindex","0");el.setAttribute("role","button")});
+ document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches(".av-clickable")){e.preventDefault();e.target.click()}});
+ const ai=document.createElement("div");ai.className="av-ai";ai.innerHTML='<button class="av-ai-launch" aria-label="Open AUTO AI assistant"><span class="av-robot">◈</span><span>AUTO AI</span></button><section class="av-ai-panel" aria-label="AUTO AI assistant"><div class="av-ai-head"><div><strong>◈ AUTO AI</strong><small>YOUR AUTOMOTIVE GUIDE</small></div><button class="av-ai-x" aria-label="Close assistant">×</button></div><div class="av-ai-messages"><div class="av-ai-message bot">Hello! I’m AUTO AI. Ask me about cars, specifications, brands, comparisons or Formula 1.</div></div><form class="av-ai-form"><input aria-label="Ask AUTO AI" placeholder="Ask about a car..." autocomplete="off"><button type="submit">SEND</button></form><div class="av-ai-disclaimer">Built-in demo assistant · Answers are general, not live data.</div></section>';document.body.appendChild(ai);
+ const panel=ai.querySelector(".av-ai-panel"),msgs=ai.querySelector(".av-ai-messages"),form=ai.querySelector("form"),field=form.querySelector("input");
+ const add=(text,who)=>{const d=document.createElement("div");d.className="av-ai-message "+who;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight};
+ ai.querySelector(".av-ai-launch").addEventListener("click",()=>panel.classList.toggle("show"));ai.querySelector(".av-ai-x").addEventListener("click",()=>panel.classList.remove("show"));
+ function answer(q){const s=q.toLowerCase();if(/compare|difference/.test(s))return "Use the Compare page to select two models. AUTOVERSE will show their power, engine, transmission, acceleration, top speed and indicative price side by side.";
+ if(/formula.?1|\bf1\b|racing|grand prix/.test(s))return "Visit the F1 Edition for an introduction to race cars, teams, circuits, race weekends, aerodynamics, hybrid power units and tyre strategy.";
+ if(/electric|ev|battery/.test(s))return "Electric cars use electric motors and rechargeable battery packs. In this collection, the MG ZS EV is listed as an electric SUV. Check the manufacturer for current range and charging details.";
+ const found=cars.find(c=>s.includes(c.name.toLowerCase())||s.includes(c.brand.toLowerCase()));if(found)return found.name+" is listed as a "+found.category+" from "+found.brand+". Power: "+found.power+". Engine / motor: "+found.engine+". Transmission: "+found.transmission+". These are indicative details; variants can differ.";
+ if(/brand|manufacturer/.test(s))return "Explore the Brands page for Tata Motors, Mahindra, Maruti Suzuki, Hyundai, Kia and MG. Select a brand card to open its information panel.";
+ if(/price|cost/.test(s))return "Prices shown on AUTOVERSE are indicative starter ranges, not live quotations. Actual prices depend on variant, model year, location and taxes.";
+ return "I can help with car specifications, categories, brands, electric vehicles, comparisons and Formula 1. Try asking about the Mahindra Thar, Tata Nexon or F1 technology."}
+ form.addEventListener("submit",e=>{e.preventDefault();const q=field.value.trim();if(!q)return;add(q,"user");field.value="";add(answer(q),"bot")});
 });
