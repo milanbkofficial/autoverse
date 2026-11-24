@@ -1,0 +1,24 @@
+:root{--f1-red:#f04438;--f1-orange:#ff6a1a}
+.f1-page{background:radial-gradient(ellipse at 78% 10%,rgba(240,68,56,.16),transparent 32%),var(--bg)}
+.f1-page header{border-bottom-color:#482323}
+.f1-page nav a.active,.f1-page nav a:hover{color:#ff5b4d}
+.f1-page .logo span{color:#ff5b4d}
+.f1-hero{min-height:570px;position:relative;overflow:hidden;padding:clamp(30px,6vw,76px);border:1px solid #4a2828;border-radius:14px;background:linear-gradient(115deg,rgba(8,9,11,.97) 12%,rgba(8,9,11,.82) 55%,rgba(80,15,17,.62)),repeating-linear-gradient(135deg,#191b20 0 2px,#111318 2px 8px);display:flex;flex-direction:column;justify-content:center}
+.f1-hero:after{content:"";position:absolute;right:3%;top:14%;width:min(38vw,430px);height:260px;border:3px solid rgba(240,68,56,.4);border-left:0;border-right:0;transform:skewX(-28deg);box-shadow:0 16px 0 rgba(240,68,56,.12),0 32px 0 rgba(240,68,56,.08);pointer-events:none}
+.f1-hero h1{font-size:clamp(48px,8vw,100px);max-width:800px;letter-spacing:-4px;margin:18px 0}
+.f1-hero h1 span,.f1-promo h2 span{color:#ff5148}
+.f1-hero p{max-width:620px;color:#c0c0c5;font-size:16px}
+.f1-kicker{color:#ff5148;font-size:11px;letter-spacing:3px;font-weight:800;text-transform:uppercase}
+.f1-promo{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;border:1px solid #492626;border-radius:12px;background:radial-gradient(circle at 85% 50%,rgba(240,68,56,.2),transparent 30%),#111216;overflow:hidden}
+.f1-promo-copy{max-width:680px}.f1-promo h2{font-size:clamp(28px,4vw,44px);margin:12px 0}.f1-promo p{color:var(--muted);max-width:570px}
+.f1-mark{font-family:'Space Grotesk',sans-serif;font-size:clamp(100px,20vw,220px);font-weight:700;font-style:italic;line-height:1;color:rgba(240,68,56,.16);letter-spacing:-18px}
+.f1-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:24px}
+.f1-card{background:linear-gradient(145deg,#1a171a,#101115);border:1px solid #38282a;border-radius:9px;padding:22px;transition:.2s}
+.f1-card:hover{transform:translateY(-3px);border-color:#e84a43}
+.f1-card .f1-number{font-size:11px;color:#ff5148;letter-spacing:2px;font-weight:800}
+.f1-card h3{margin:12px 0 8px}.f1-card p{font-size:13px;color:#aeb0b8;line-height:1.7}
+.f1-symbol{height:116px;display:flex;align-items:center;justify-content:center;font-size:50px;background:radial-gradient(ellipse,rgba(240,68,56,.2),transparent 65%);border-bottom:1px solid #38282a;margin:-22px -22px 18px}
+.f1-note{border:1px solid #57302f;background:rgba(240,68,56,.07);padding:14px 17px;border-radius:6px;color:#b7b4b7;font-size:12px;margin-top:24px}
+.f1-page .btn{border-color:#f04438}.f1-page .btn.primary{background:#f04438;border-color:#f04438;color:white}
+.f1-page footer{border-color:#38282a}
+@media(max-width:700px){.f1-hero{min-height:480px}.f1-hero:after{opacity:.35;right:-20%}.f1-mark{display:none}.f1-promo{padding:24px}}
