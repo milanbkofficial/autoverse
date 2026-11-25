@@ -11,7 +11,7 @@
   <div class="intro-bottom"><span>BEYOND SPEED. BEYOND LIMITS.</span><span>INITIALISING EXPERIENCE <b>●</b></span></div>
 </div>
 <style>
-.vyrox-intro-pending{overflow:hidden}.vyrox-intro{position:fixed;inset:0;z-index:10000;background:radial-gradient(ellipse at 70% 45%,#202630 0%,#0a0d12 54%,#050609 100%);overflow:hidden;animation:introFade .65s ease 3.15s forwards;color:#f5f6f8}
+.vyrox-intro-pending{overflow:hidden}.vyrox-intro{position:fixed;inset:0;z-index:10000;background:radial-gradient(ellipse at 70% 45%,#202630 0%,#0a0d12 54%,#050609 100%);overflow:hidden;animation:introFade .7s ease 6s forwards;color:#f5f6f8}
 .intro-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(90deg,transparent,#000)}
 .intro-topline,.intro-bottom{position:absolute;left:6%;right:6%;display:flex;justify-content:space-between;gap:15px;font:800 10px Manrope,Arial,sans-serif;letter-spacing:2px}
 .intro-topline{top:7%;color:#fff}.intro-topline span,.intro-bottom{color:#aab2bf}
@@ -27,7 +27,7 @@
 @media(prefers-reduced-motion:reduce){.intro-car{animation:none;opacity:.92}.vyrox-intro{animation:introFade .2s ease 1.2s forwards}.intro-roadline{animation:none}}
 </style>
 <script>
-window.addEventListener("DOMContentLoaded",()=>{const intro=document.getElementById("vyrox-intro");if(!intro)return;const video=document.getElementById("intro-car-video");if(video){video.muted=true;video.defaultMuted=true;video.playsInline=true;const start=()=>video.play().catch(()=>{});video.addEventListener("loadeddata",start,{once:true});start()}window.setTimeout(()=>{intro.remove();document.body.classList.remove("vyrox-intro-pending")},6500)});
+window.addEventListener("DOMContentLoaded",()=>{const intro=document.getElementById("vyrox-intro");if(!intro)return;const video=document.getElementById("intro-car-video");if(video){video.muted=true;video.defaultMuted=true;video.playsInline=true;const start=()=>video.play().catch(()=>{});video.addEventListener("loadeddata",start,{once:true});start()}window.setTimeout(()=>{intro.remove();document.body.classList.remove("vyrox-intro-pending")},6800)});
 </script>
 <header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
 <a class="active" href="index.html">Home</a><a href="explore.html">Explore</a><a href="sports-cars.html">Sports Cars</a><a href="compare.html">Compare</a><a href="brands.html">Brands</a><a href="categories.html">Categories</a><a href="performance.html">Performance</a><a href="popular.html">Popular</a><a href="about.html">About</a><a href="f1-special.html">F1 Edition</a>
