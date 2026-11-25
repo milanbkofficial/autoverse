@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore the VYROX MOTORS interior experience.">
+<title>Interior Experience | VYROX MOTORS</title>
+<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="interior.css">
+</head>
+<body>
+<header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
+<a href="index.html">Home</a><a href="explore.html">Explore</a><a href="interior.html" class="active">Interior Experience</a><a href="sports-cars.html">Sports Cars</a><a href="compare.html">Compare</a><a href="brands.html">Brands</a><a href="categories.html">Categories</a><a href="performance.html">Performance</a><a href="popular.html">Popular</a><a href="about.html">About</a><a href="f1-special.html">F1 Edition</a>
+</nav></header>
+<main class="interior-main">
+<section class="interior-hero">
+ <div class="eyebrow">VYROX EXCLUSIVE EXPERIENCE</div>
+ <h1>STEP <span>INSIDE.</span></h1>
+ <p>Explore the cabin, discover the details and get closer to the cars you love.</p>
+ <div class="interior-hero-meta"><span>ALL CATALOGUE CARS</span><span>·</span><span>FIRST VISIT FREE</span></div>
+</section>
+<section class="access-strip" id="access-status" aria-live="polite"></section>
+<section class="interior-viewer" id="interior-viewer">
+ <div class="viewer-heading"><div><div class="eyebrow">CABIN PREVIEW</div><h2 id="selected-name">Choose a car</h2><p id="selected-brand">Select a model below to begin.</p></div><span class="viewer-tag">PHOTO PREVIEW</span></div>
+ <div class="viewer-image-wrap"><img id="cabin-image" src="https://images.pexels.com/photos/4141873/pexels-photo-4141873.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Sample luxury car cabin interior"><div class="viewer-overlay"><span>VYROX INTERIOR STUDIO</span><b id="viewer-caption">SAMPLE CABIN IMAGE</b></div></div>
+ <p class="media-note">These are genuine sample cabin photographs, not verified interiors of every selected model. Model-specific photographs and true 360° panoramic tours will be added as licensed media becomes available.</p>
+ <div class="viewer-controls"><button class="btn" id="sample-bmw" type="button">BMW CABIN SAMPLE</button><button class="btn" id="sample-mercedes" type="button">MERCEDES CABIN SAMPLE</button></div>
+</section>
+<section class="catalogue-section">
+ <div class="section-head"><div><div class="eyebrow">PICK YOUR MACHINE</div><h2 class="section-title">CHOOSE A CAR</h2></div><span class="catalogue-count" id="car-count">Loading cars…</span></div>
+ <div class="interior-grid" id="interior-cars"></div>
+</section>
+<section class="pricing-section" id="pricing">
+ <div class="eyebrow">YOUR ACCESS. YOUR CHOICE.</div><h2 class="section-title">VYROX VIP ACCESS</h2>
+ <div class="pricing-grid">
+  <article class="price-card"><span class="price-label">FIRST VISIT</span><strong>FREE</strong><p>Explore all available car previews during your first visit.</p><span class="price-foot">ONE-TIME TRIAL</span></article>
+  <article class="price-card"><span class="price-label">EACH LATER VISIT</span><strong>₹100</strong><p>Pay for access on each subsequent visit.</p><span class="price-foot">PER VISIT</span></article>
+  <article class="price-card featured-price"><span class="price-label">BEST VALUE</span><strong>₹500</strong><p>One payment for permanent access to the interior experience.</p><span class="price-foot">ONE-TIME PAYMENT</span></article>
+ </div>
+ <div class="payment-notice" id="payment-notice">Payment is not active yet. No money will be collected on this demo page. Secure checkout and account-based access will be connected before launch.</div>
+ <div class="payment-actions"><button class="btn" type="button" data-plan="visit">SELECT ₹100 VISIT PASS</button><button class="btn primary" type="button" data-plan="lifetime">SELECT ₹500 PERMANENT ACCESS</button></div>
+</section>
+</main>
+<footer><strong>VYROX MOTORS</strong> · BEYOND SPEED. BEYOND LIMITS.</footer>
+<script src="data.js"></script><script src="app.js"></script><script src="interior.js"></script>
+</body></html>
