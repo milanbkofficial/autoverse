@@ -18,6 +18,54 @@
    license:"Creative Commons Attribution-ShareAlike",
    note:"Community 3D model of a Porsche 911 Carrera 4S. The model page says it was made for a WebGL car configurator."
   },
+  "nissan-gt-r":{
+   uid:"51c912a8310c4e00a82ad7673d84228a",
+   title:"Nissan GT-R R35",
+   source:"https://sketchfab.com/3d-models/nissan-gtr-r35-51c912a8310c4e00a82ad7673d84228a",
+   creator:"Ciasny",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"Creator-published Nissan GT-R R35 model. Credit: Ciasny via Sketchfab."
+  },
+  "toyota-gr-supra":{
+   uid:"f18d905dd7174b3b86960407f0f1adb9",
+   title:"Toyota GR Supra",
+   source:"https://sketchfab.com/3d-models/toyota-gr-supra-f18d905dd7174b3b86960407f0f1adb9",
+   creator:"DRIVER-FIRE",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"Creator-published Toyota GR Supra model. Credit: DRIVER-FIRE via Sketchfab."
+  },
+  "bmw-m4":{
+   uid:"5c0a2dafb1ad408d9fc9eeef9aee531b",
+   title:"BMW M4 Competition M Package",
+   source:"https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b",
+   creator:"SRT Performance",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"BMW M4 Competition M Package model. Credit: SRT Performance via Sketchfab."
+  },
+  "mercedes-amg-gt":{
+   uid:"ddec585e1af84822a5361e425a8807d9",
+   title:"Mercedes-AMG GT (C190, 2014–2023)",
+   source:"https://sketchfab.com/3d-models/mercedes-amg-gt-c190-2014-2023-ddec585e1af84822a5361e425a8807d9",
+   creator:"Merc_TV",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"Creator-published first-generation Mercedes-AMG GT C190 model. It is not the newer second-generation coupé."
+  },
+  "ford-mustang-dark-horse":{
+   uid:"8d36433f48974e09ae9691fbbee2e2b2",
+   title:"Ford Mustang Dark Horse",
+   source:"https://sketchfab.com/3d-models/ford-mustang-dark-horse-8d36433f48974e09ae9691fbbee2e2b2",
+   creator:"MattDoesBlender",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"Creator-published Ford Mustang Dark Horse model. Credit: MattDoesBlender via Sketchfab."
+  },
+  "mclaren-720s":{
+   uid:"905a74cf57f844a4b414980f42d9fc41",
+   title:"McLaren 720S GT3",
+   source:"https://sketchfab.com/3d-models/2018-mclaren-720s-gt3-905a74cf57f844a4b414980f42d9fc41",
+   creator:"No Limits",
+   license:"Creative Commons Attribution (CC BY)",
+   note:"This is the 720S GT3 race-car version, not the road-going 750S. Credit: No Limits via Sketchfab."
+  },
   "lamborghini-revuelto":{
    uid:"cf52245eb68f48daa909c7ad2a8deaa3",
    title:"Lamborghini Revuelto",
