@@ -7,7 +7,7 @@
   <div class="intro-grid"></div><div class="intro-topline">VYROX MOTORS <span>/// PERFORMANCE DIVISION</span></div>
   <div class="intro-copy"><span>ENGINEERED TO MOVE YOU</span><strong>THE DRIVE<br>STARTS NOW.</strong></div>
   <div class="intro-road"><div class="intro-roadline"></div></div>
-  <img class="intro-car" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=90" alt="">
+  <video class="intro-car" autoplay muted playsinline loop preload="auto" aria-label="Real sports car driving footage"><source src="https://videos.pexels.com/video-files/29498801/12698140_4070_2160_24fps.mp4" type="video/mp4"></video>
   <div class="intro-bottom"><span>BEYOND SPEED. BEYOND LIMITS.</span><span>INITIALISING EXPERIENCE <b>●</b></span></div>
 </div>
 <style>
@@ -18,12 +18,12 @@
 .intro-copy{position:absolute;z-index:2;left:8%;top:27%;display:grid;gap:12px}.intro-copy span{color:#ff6b24;font:900 10px Manrope,Arial,sans-serif;letter-spacing:4px}.intro-copy strong{font:900 clamp(44px,8vw,100px)/.88 'Barlow Condensed',Impact,sans-serif;letter-spacing:-1px}
 .intro-road{position:absolute;left:0;right:0;bottom:20%;height:2px;background:#69717c55;box-shadow:0 15px 45px #000}
 .intro-roadline{height:2px;width:100%;background:repeating-linear-gradient(90deg,#ff6b24 0 55px,transparent 55px 110px);animation:roadMove .18s linear infinite}
-.intro-car{position:absolute;z-index:3;width:min(70vw,900px);height:auto;object-fit:contain;right:-110%;bottom:19%;filter:drop-shadow(0 28px 35px #000c);animation:carArrival 3s cubic-bezier(.2,.7,.2,1) .15s both}
+.intro-car{position:absolute;z-index:3;width:min(78vw,1050px);height:auto;max-height:66vh;object-fit:cover;right:-110%;bottom:16%;border-radius:10px;filter:drop-shadow(0 28px 35px #000c);animation:carArrival 3s cubic-bezier(.2,.7,.2,1) .15s both}
 .intro-bottom{bottom:6%;font-size:9px}.intro-bottom b{color:#ff6b24}
 @keyframes carArrival{0%{right:-110%;transform:scale(.72) translateY(35px);opacity:0}18%{opacity:1}55%{right:13%;transform:scale(1) translateY(0)}78%{right:8%;transform:scale(1.04) translateY(-4px)}100%{right:-115%;transform:scale(1.13) translateY(-8px);opacity:1}}
 @keyframes roadMove{to{background-position:110px 0}}
 @keyframes introFade{to{opacity:0;visibility:hidden;pointer-events:none}}
-@media(max-width:650px){.intro-copy{top:20%}.intro-car{width:110vw;bottom:25%}.intro-bottom{font-size:8px;letter-spacing:1px}.intro-topline{font-size:9px}}
+@media(max-width:650px){.intro-copy{top:20%}.intro-car{width:120vw;max-height:48vh;bottom:25%}.intro-bottom{font-size:8px;letter-spacing:1px}.intro-topline{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.intro-car{animation:none;right:4%;opacity:1}.vyrox-intro{animation:introFade .2s ease 1.2s forwards}.intro-roadline{animation:none}}
 </style>
 <script>
