@@ -138,18 +138,20 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 
-// VYROX MOTORS — site-wide background soundtrack
+// VYROX MOTORS — persistent site-wide background soundtrack
 document.addEventListener("DOMContentLoaded",()=>{
   const audio=document.createElement("audio");
   audio.id="vyrox-background-audio";
-  audio.src="ummbrella-cinematic-sport-rock_elevation-303692.mp3";
+  audio.src="/ummbrella-cinematic-sport-rock_elevation-303692.mp3";
   audio.loop=true;
   audio.preload="auto";
   audio.volume=0.32;
   document.body.appendChild(audio);
 
-  const saved=localStorage.getItem("vyroxSoundEnabled");
-  let enabled=saved!=="false";
+  const enabled=localStorage.getItem("vyroxSoundEnabled")!=="false";
+  const positionKey="vyroxMusicPosition";
+  let restored=false;
+
   const control=document.createElement("button");
   control.type="button";
   control.id="vyrox-sound-control";
@@ -167,27 +169,60 @@ document.addEventListener("DOMContentLoaded",()=>{
     control.innerHTML=playing?'♫ <span>MUSIC ON · MUTE</span>':'♫ <span>START MUSIC</span>';
     control.setAttribute("aria-label",playing?"Mute background music":"Enable background music");
   };
+
+  const savePosition=()=>{
+    try{
+      if(Number.isFinite(audio.currentTime)){
+        sessionStorage.setItem(positionKey,String(audio.currentTime));
+      }
+    }catch(error){}
+  };
+
+  audio.addEventListener("loadedmetadata",()=>{
+    if(restored)return;
+    restored=true;
+    try{
+      const savedPosition=Number(sessionStorage.getItem(positionKey)||0);
+      if(Number.isFinite(savedPosition)&&savedPosition>0&&savedPosition<audio.duration){
+        audio.currentTime=savedPosition;
+      }
+    }catch(error){}
+    if(enabled)start();
+  },{once:true});
+
   const start=()=>{
     if(!enabled)return;
     audio.play().then(()=>paint(true)).catch(()=>paint(false));
   };
-  if(enabled)start(); else paint(false);
+
+  // Save the current track position before leaving any page.
+  window.addEventListener("pagehide",savePosition);
+  window.addEventListener("beforeunload",savePosition);
+  audio.addEventListener("timeupdate",savePosition);
+  audio.addEventListener("play",()=>paint(true));
+  audio.addEventListener("pause",()=>paint(false));
+
+  if(enabled){
+    audio.addEventListener("canplay",start,{once:true});
+    start();
+  }else{
+    paint(false);
+  }
 
   control.addEventListener("click",()=>{
     if(!audio.paused&&!audio.muted){
-      audio.pause();enabled=false;localStorage.setItem("vyroxSoundEnabled","false");paint(false);
+      audio.pause();
+      localStorage.setItem("vyroxSoundEnabled","false");
+      paint(false);
     }else{
-      enabled=true;localStorage.setItem("vyroxSoundEnabled","true");
+      localStorage.setItem("vyroxSoundEnabled","true");
       audio.play().then(()=>paint(true)).catch(()=>paint(false));
     }
   });
+
   const firstInteraction=()=>{
-    if(enabled&&audio.paused)start();
-    document.removeEventListener("pointerdown",firstInteraction);
-    document.removeEventListener("keydown",firstInteraction);
+    if(localStorage.getItem("vyroxSoundEnabled")!=="false"&&audio.paused)start();
   };
   document.addEventListener("pointerdown",firstInteraction,{once:true});
   document.addEventListener("keydown",firstInteraction,{once:true});
-  audio.addEventListener("play",()=>paint(true));
-  audio.addEventListener("pause",()=>paint(false));
 });
