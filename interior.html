@@ -20,14 +20,13 @@
 </section>
 <section class="access-strip" id="access-status" aria-live="polite"><strong>FREE ACCESS FOR EVERYONE</strong> — No visit limits, payments or locked features.</section>
 <section class="interior-viewer" id="interior-viewer">
- <div class="viewer-heading"><div><div class="eyebrow">INTERACTIVE 3D EXTERIOR</div><h2 id="selected-name">Choose a car</h2><p id="selected-brand">Select a model from the catalogue.</p></div><span class="viewer-tag" id="model-status">INTERACTIVE 3D CONCEPT</span></div>
+ <div class="viewer-heading"><div><div class="eyebrow">REAL 3D MODEL VIEWER</div><h2 id="selected-name">Choose a car</h2><p id="selected-brand">Select a model from the catalogue.</p></div><span class="viewer-tag" id="model-status">COMMUNITY 3D MODEL</span></div>
  <div class="model-stage">
-  <canvas id="car-canvas" aria-label="Interactive 3D concept car"></canvas><div class="studio-controls"><button id="rotate-toggle" class="studio-btn">PAUSE ROTATION</button><button id="reset-view" class="studio-btn">RESET VIEW</button><button id="interior-toggle" class="studio-btn">VIEW CABIN</button></div>
-  <div class="model-empty" id="model-empty"><strong>VYROX 3D CONCEPT STUDIO</strong><span>Drag to rotate · Scroll to zoom · Switch to the stylised cabin view. Original visual approximation, not a factory CAD model.</span></div>
+  <iframe id="real-car-viewer" title="Interactive 3D car model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe><div class="model-empty" id="model-empty"><strong>SELECT A 3D MODEL</strong><span>Choose a supported car below. Drag to orbit and use the viewer controls to zoom.</span></div>
  </div>
- <div class="viewer-heading cabin-heading"><div><div class="eyebrow">3D COCKPIT CONCEPT</div><h2>INSIDE THE COCKPIT</h2><p id="cabin-status">Switch to the cockpit view to inspect the stylised cabin layout.</p></div><span class="viewer-tag">MODEL-SPECIFIC MEDIA</span></div>
- <div class="cabin-gallery" id="cabin-gallery"><div class="cabin-empty">Verified photographs for the selected car will appear here. We won't show unrelated cabin photos as if they belong to this model.</div></div>
- <p class="media-note">These are original stylised 3D concept approximations created for VYROX, not manufacturer CAD models or exact factory interiors. Genuine cabin photographs can be added separately when verified.</p>
+ <div class="viewer-heading cabin-heading"><div><div class="eyebrow">MODEL INFORMATION</div><h2>MODEL & ATTRIBUTION</h2><p id="cabin-status">Select a car to view its model source and creator credit.</p></div><span class="viewer-tag">SOURCE & LICENCE</span></div>
+ <div class="cabin-gallery" id="cabin-gallery"><div class="cabin-empty">Model creator credits will appear here.</div></div>
+ <p class="media-note">These are creator-published community 3D models shown through the Sketchfab viewer, not manufacturer-supplied CAD files. Each creator and licence is credited below. The Ferrari asset currently available is the related 296 GTS, not the 296 GTB coupe.</p>
 </section>
 <section class="catalogue-section">
  <div class="section-head"><div><div class="eyebrow">PICK YOUR MACHINE</div><h2 class="section-title">CHOOSE A CAR</h2></div><span class="catalogue-count" id="car-count">Loading cars…</span></div>
