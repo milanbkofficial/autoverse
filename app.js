@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   control.setAttribute("aria-label","Enable background music");
   control.innerHTML="♫ <span>START MUSIC</span>";
   Object.assign(control.style,{
-    position:"fixed",right:"18px",bottom:"18px",zIndex:"9999",
+    position:"fixed",left:"18px",right:"auto",bottom:"18px",zIndex:"899",
     padding:"12px 16px",border:"1px solid #ff6b24",borderRadius:"6px",
     background:"#10151d",color:"#fff",font:"800 11px Manrope,Arial,sans-serif",
     letterSpacing:"1px",cursor:"pointer",boxShadow:"0 8px 28px #0008"
