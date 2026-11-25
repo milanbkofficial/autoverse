@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   if(enabled){
     audio.addEventListener("canplay",start,{once:true});
-    start();
   }else{
     paint(false);
   }
