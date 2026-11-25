@@ -5,7 +5,7 @@
 <meta name="description" content="Explore the VYROX MOTORS car studio.">
 <title>3D Car Studio | VYROX MOTORS</title>
 <link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="interior.css">
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 </head>
 <body>
 <header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
@@ -20,14 +20,14 @@
 </section>
 <section class="access-strip" id="access-status" aria-live="polite"><strong>FREE ACCESS FOR EVERYONE</strong> — No visit limits, payments or locked features.</section>
 <section class="interior-viewer" id="interior-viewer">
- <div class="viewer-heading"><div><div class="eyebrow">INTERACTIVE 3D EXTERIOR</div><h2 id="selected-name">Choose a car</h2><p id="selected-brand">Select a model from the catalogue.</p></div><span class="viewer-tag" id="model-status">3D MODEL NOT YET ADDED</span></div>
+ <div class="viewer-heading"><div><div class="eyebrow">INTERACTIVE 3D EXTERIOR</div><h2 id="selected-name">Choose a car</h2><p id="selected-brand">Select a model from the catalogue.</p></div><span class="viewer-tag" id="model-status">INTERACTIVE 3D CONCEPT</span></div>
  <div class="model-stage">
-  <model-viewer id="car-model" camera-controls auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1" environment-image="neutral" interaction-prompt="auto" aria-label="Interactive 3D car model"></model-viewer>
-  <div class="model-empty" id="model-empty"><strong>3D MODEL AWAITING VERIFIED ASSET</strong><span>When this car's genuine 3D model is added, you will be able to rotate, zoom and inspect it here.</span></div>
+  <canvas id="car-canvas" aria-label="Interactive 3D concept car"></canvas><div class="studio-controls"><button id="rotate-toggle" class="studio-btn">PAUSE ROTATION</button><button id="reset-view" class="studio-btn">RESET VIEW</button><button id="interior-toggle" class="studio-btn">VIEW CABIN</button></div>
+  <div class="model-empty" id="model-empty"><strong>VYROX 3D CONCEPT STUDIO</strong><span>Drag to rotate · Scroll to zoom · Switch to the stylised cabin view. Original visual approximation, not a factory CAD model.</span></div>
  </div>
  <div class="viewer-heading cabin-heading"><div><div class="eyebrow">REAL CABIN PHOTOGRAPHS</div><h2>THE INTERIOR</h2><p id="cabin-status">Select a car to check its verified interior gallery.</p></div><span class="viewer-tag">MODEL-SPECIFIC MEDIA</span></div>
  <div class="cabin-gallery" id="cabin-gallery"><div class="cabin-empty">Verified photographs for the selected car will appear here. We won't show unrelated cabin photos as if they belong to this model.</div></div>
- <p class="media-note">A real 3D experience requires a model file for each car (GLB or glTF). The interior gallery requires genuine, model-specific photographs. These assets are not yet connected for the catalogue, so this page clearly marks what is still pending rather than displaying misleading samples.</p>
+ <p class="media-note">These are original stylised 3D concept approximations created for VYROX, not manufacturer CAD models or exact factory interiors. Genuine cabin photographs can be added separately when verified.</p>
 </section>
 <section class="catalogue-section">
  <div class="section-head"><div><div class="eyebrow">PICK YOUR MACHINE</div><h2 class="section-title">CHOOSE A CAR</h2></div><span class="catalogue-count" id="car-count">Loading cars…</span></div>
