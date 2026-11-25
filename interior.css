@@ -11,3 +11,12 @@
 .cabin-gallery figcaption{padding:10px;color:#dce2e9;font-size:11px}
 .cabin-empty{grid-column:1/-1;min-height:110px;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;border:1px dashed #596575;border-radius:9px;color:#b8c2cf;font-size:12px;line-height:1.7;background:rgba(255,255,255,.02)}
 @media(max-width:600px){.model-stage,#car-model{min-height:280px;height:280px}.cabin-gallery{grid-template-columns:1fr 1fr}}
+
+#car-canvas{display:block;width:100%;height:clamp(300px,48vw,540px);touch-action:none}
+.studio-controls{position:absolute;z-index:3;left:12px;right:12px;bottom:12px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;pointer-events:none}
+.studio-btn{pointer-events:auto;border:1px solid rgba(255,107,36,.7);background:rgba(7,11,17,.9);color:#fff;padding:10px 13px;border-radius:5px;font-size:9px;font-weight:900;letter-spacing:1px;cursor:pointer}
+.studio-btn:hover,.studio-btn.active{background:var(--orange);color:#080b10}
+.model-empty{pointer-events:none;inset:10px 12px auto;bottom:auto;padding:10px;background:linear-gradient(180deg,rgba(5,8,12,.8),transparent);align-items:flex-start;text-align:left}
+.model-empty strong{font-size:10px}.model-empty span{font-size:10px;max-width:520px}
+.model-stage{min-height:clamp(300px,48vw,540px)}
+@media(max-width:600px){#car-canvas{height:350px}.model-stage{min-height:350px}.studio-btn{padding:9px;font-size:8px}}
