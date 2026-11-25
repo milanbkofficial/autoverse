@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   interiorLink.textContent="Interior Experience";
   siteNav.insertBefore(interiorLink,siteNav.children[2]||null);
  }
+ if(siteNav&&!siteNav.querySelector('a[href="showroom.html"]')){
+  const showroomLink=document.createElement("a");
+  showroomLink.href="showroom.html";
+  showroomLink.textContent="Virtual Showroom";
+  siteNav.insertBefore(showroomLink,siteNav.children[3]||null);
+ }
  const modal=document.createElement("div");modal.className="av-modal";modal.innerHTML='<div class="av-shade" data-close></div><section class="av-box"><button class="av-close" data-close aria-label="Close">×</button><div id="av-content"></div></section>';document.body.append(modal);
  const close=()=>modal.classList.remove("open");modal.addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
  const open=h=>{document.querySelector("#av-content").innerHTML=h;modal.classList.add("open")};
