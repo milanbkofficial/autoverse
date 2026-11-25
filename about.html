@@ -15,9 +15,12 @@
     .about-hero p,.founder-copy p,.mission-card p{color:var(--muted);line-height:1.75}
     .visual-card{background:radial-gradient(circle at 65% 35%,#3a2118,#14161b 55%,#0b0d10);border:1px solid #34303a;border-radius:14px;padding:20px;min-height:270px;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .founder-card{display:grid;grid-template-columns:.8fr 1.2fr;gap:26px;align-items:center;margin-top:24px}
-    .founder-art{min-height:230px;background:linear-gradient(145deg,#1b1d22,#0b0d10);border:1px solid #30343b;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:20px}
-    .founder-art .monogram{font-size:clamp(62px,10vw,100px);font-weight:900;letter-spacing:-7px;color:#fff}
-    .founder-art .monogram span{color:var(--orange)}
+    .founder-art{position:relative;min-height:230px;background:radial-gradient(ellipse at 50% 38%,#30343b 0%,#171a1f 48%,#090b0e 100%);border:1px solid #454a52;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding:24px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -18px 35px rgba(0,0,0,.42)}
+    .founder-art:before{content:"";position:absolute;inset:12px;border:1px solid rgba(208,215,224,.17);border-radius:6px;pointer-events:none}
+    .founder-art:after{content:"";position:absolute;left:12%;right:12%;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+    .founder-art .monogram{position:relative;z-index:1;font-family:Arial,sans-serif;font-size:clamp(58px,8vw,86px);font-weight:800;letter-spacing:5px;line-height:1;color:#dce1e7;background:linear-gradient(180deg,#fff 0%,#aeb7c1 35%,#626b75 52%,#e8edf2 68%,#737d88 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 3px 9px rgba(0,0,0,.45);filter:drop-shadow(0 1px 0 rgba(255,255,255,.18))}
+    .founder-art .founder-rule{position:relative;z-index:1;width:74px;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+    .founder-art .founder-label{position:relative;z-index:1;color:#aeb5be;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase}
     .mission-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:22px 0 42px}
     .mission-card{background:var(--panel);border:1px solid #292d35;padding:22px;border-radius:9px}
     .mission-card h3{margin:8px 0}
@@ -64,7 +67,7 @@
     <div class="section-kicker">THE CREATOR</div>
     <h2 class="section-title">Meet the Founder</h2>
     <article class="card founder-card">
-      <div class="founder-art"><div class="monogram">M<span>BK</span></div></div>
+      <div class="founder-art" aria-label="MBK metallic founder monogram"><div class="monogram">MBK</div><div class="founder-rule"></div><div class="founder-label">Founder mark · Est. 2026</div></div>
       <div class="founder-copy">
         <div class="section-kicker">FOUNDER & CREATOR</div>
         <h3 class="founder-name">Milan BK</h3>
