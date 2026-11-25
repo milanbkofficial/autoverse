@@ -1,53 +1,50 @@
 (()=>{
  const cars=Array.isArray(window.CARS)?window.CARS:[];
  const grid=document.getElementById("interior-cars");
- const status=document.getElementById("access-status");
- const viewer=document.getElementById("interior-viewer");
  const name=document.getElementById("selected-name");
  const brand=document.getElementById("selected-brand");
- const img=document.getElementById("cabin-image");
- const caption=document.getElementById("viewer-caption");
- const visitKey="vyroxInteriorTrialUsed";
- const sessionKey="vyroxInteriorSession";
- const isNewSession=!sessionStorage.getItem(sessionKey);
- sessionStorage.setItem(sessionKey,"active");
- let freeTrial=false;
- if(!localStorage.getItem(visitKey)){localStorage.setItem(visitKey,"yes");freeTrial=true;}
- else if(isNewSession){freeTrial=false;}
- else{freeTrial=sessionStorage.getItem("vyroxInteriorFreeSession")==="yes";}
- if(freeTrial)sessionStorage.setItem("vyroxInteriorFreeSession","yes");
- const unlocked=freeTrial;
- status.innerHTML=unlocked
-  ?'<strong>FIRST VISIT · FREE ACCESS</strong> — You can browse the full catalogue during this visit.'
-  :'<strong>WELCOME BACK</strong> — Choose a ₹100 visit pass or ₹500 permanent access. Checkout is not connected yet.';
- const allowed=unlocked;
- const photoBMW="https://images.pexels.com/photos/4141873/pexels-photo-4141873.jpeg?auto=compress&cs=tinysrgb&w=1800";
- const photoMercedes="https://images.pexels.com/photos/6969036/pexels-photo-6969036.jpeg?auto=compress&cs=tinysrgb&w=1800";
- let selected=null;
+ const model=document.getElementById("car-model");
+ const empty=document.getElementById("model-empty");
+ const modelStatus=document.getElementById("model-status");
+ const cabinStatus=document.getElementById("cabin-status");
+ const gallery=document.getElementById("cabin-gallery");
+ const safe=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
  function showCar(car){
-  selected=car;
   name.textContent=car.name;
-  brand.textContent=car.brand+" · Interior media status: sample preview only";
+  brand.textContent=car.brand+" · "+car.category;
   document.querySelectorAll(".interior-car").forEach(el=>el.classList.toggle("selected",el.dataset.id===car.id));
-  if(/mercedes/i.test(car.brand)){img.src=photoMercedes;caption.textContent="GENERIC MERCEDES CABIN SAMPLE";}
-  else{img.src=photoBMW;caption.textContent="GENERIC BMW CABIN SAMPLE";}
-  img.alt="Generic real-life cabin sample. Not confirmed as the interior of "+car.name;
-  if(!allowed){
-   status.innerHTML='<strong>PREVIEW LOCKED</strong> — This demo visit has ended. Secure checkout is not available yet; no payment can be made here.';
+  const modelUrl=car.model3d||car.model3D||"";
+  if(modelUrl){
+   model.src=modelUrl;model.style.display="block";empty.style.display="none";
+   modelStatus.textContent="3D MODEL LOADED";
+  }else{
+   model.removeAttribute("src");model.style.display="none";empty.style.display="flex";
+   modelStatus.textContent="3D MODEL PENDING";
+  }
+  const photos=Array.isArray(car.interiorImages)?car.interiorImages:[];
+  gallery.replaceChildren();
+  if(photos.length){
+   photos.forEach((photo,index)=>{
+    const figure=document.createElement("figure");
+    const image=document.createElement("img");
+    image.src=photo.url||photo;image.alt=photo.alt||car.name+" interior view "+(index+1);
+    const caption=document.createElement("figcaption");
+    caption.textContent=photo.label||("Interior view "+(index+1));
+    figure.append(image,caption);gallery.append(figure);
+   });
+   cabinStatus.textContent=photos.length+" verified interior image(s) available.";
+  }else{
+   const note=document.createElement("div");note.className="cabin-empty";
+   note.textContent="Verified "+car.name+" interior photographs have not been added yet. Dashboard, steering wheel, seats and rear-cabin views will appear here once the correct images are sourced.";
+   gallery.append(note);cabinStatus.textContent="No verified model-specific cabin images connected yet.";
   }
  }
  document.getElementById("car-count").textContent=cars.length+" CARS IN CATALOGUE";
- grid.innerHTML=cars.map(c=>'<button class="interior-car" type="button" data-id="'+String(c.id).replace(/["&<>]/g,"")+'"><img loading="lazy" src="'+String(c.image||"").replace(/"/g,"&quot;")+'" alt="'+String(c.name).replace(/"/g,"&quot;")+' exterior"><div><small>'+String(c.brand).toUpperCase()+'</small><strong>'+c.name+'</strong><span>View cabin preview →</span></div></button>').join("");
- grid.addEventListener("click",e=>{
-  const card=e.target.closest(".interior-car");if(!card)return;
-  if(!allowed){document.getElementById("pricing").scrollIntoView({behavior:"smooth"});return;}
-  const car=cars.find(c=>c.id===card.dataset.id);if(car)showCar(car);
+ grid.innerHTML=cars.map(car=>'<button class="interior-car" type="button" data-id="'+safe(car.id)+'"><img loading="lazy" src="'+safe(car.image||"")+'" alt="'+safe(car.name)+' exterior"><div><small>'+safe(car.brand).toUpperCase()+'</small><strong>'+safe(car.name)+'</strong><span>Open 3D studio →</span></div></button>').join("");
+ grid.addEventListener("click",event=>{
+  const card=event.target.closest(".interior-car");if(!card)return;
+  const car=cars.find(item=>String(item.id)===card.dataset.id);
+  if(car){showCar(car);document.getElementById("interior-viewer").scrollIntoView({behavior:"smooth",block:"start"});}
  });
- document.getElementById("sample-bmw").addEventListener("click",()=>{img.src=photoBMW;caption.textContent="GENERIC BMW CABIN SAMPLE";});
- document.getElementById("sample-mercedes").addEventListener("click",()=>{img.src=photoMercedes;caption.textContent="GENERIC MERCEDES CABIN SAMPLE";});
- document.querySelectorAll("[data-plan]").forEach(button=>button.addEventListener("click",()=>{
-  document.getElementById("payment-notice").textContent="Checkout is not connected yet. This is a pricing preview only; no payment will be collected. A secure payment provider and account-based access system must be configured before launch.";
- }));
- if(cars.length&&allowed)showCar(cars[0]);
- else if(!allowed){name.textContent="Access required";brand.textContent="Choose an access option below to continue.";}
+ if(cars.length)showCar(cars[0]);
 })();
