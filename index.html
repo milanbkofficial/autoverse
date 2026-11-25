@@ -2,7 +2,34 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="VYROX MOTORS — explore performance cars, compare machines and discover the world of Formula 1.">
 <meta name="theme-color" content="#07090d"><title>VYROX MOTORS | Beyond Speed. Beyond Limits.</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg">
-</head><body><header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
+</head><body class="vyrox-intro-pending">
+<div class="vyrox-intro" id="vyrox-intro" aria-label="VYROX MOTORS cinematic introduction">
+  <div class="intro-grid"></div><div class="intro-topline">VYROX MOTORS <span>/// PERFORMANCE DIVISION</span></div>
+  <div class="intro-copy"><span>ENGINEERED TO MOVE YOU</span><strong>THE DRIVE<br>STARTS NOW.</strong></div>
+  <div class="intro-road"><div class="intro-roadline"></div></div>
+  <img class="intro-car" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=90" alt="">
+  <div class="intro-bottom"><span>BEYOND SPEED. BEYOND LIMITS.</span><span>INITIALISING EXPERIENCE <b>●</b></span></div>
+</div>
+<style>
+.vyrox-intro-pending{overflow:hidden}.vyrox-intro{position:fixed;inset:0;z-index:10000;background:radial-gradient(ellipse at 70% 45%,#202630 0%,#0a0d12 54%,#050609 100%);overflow:hidden;animation:introFade .65s ease 3.15s forwards;color:#f5f6f8}
+.intro-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(90deg,transparent,#000)}
+.intro-topline,.intro-bottom{position:absolute;left:6%;right:6%;display:flex;justify-content:space-between;gap:15px;font:800 10px Manrope,Arial,sans-serif;letter-spacing:2px}
+.intro-topline{top:7%;color:#fff}.intro-topline span,.intro-bottom{color:#aab2bf}
+.intro-copy{position:absolute;z-index:2;left:8%;top:27%;display:grid;gap:12px}.intro-copy span{color:#ff6b24;font:900 10px Manrope,Arial,sans-serif;letter-spacing:4px}.intro-copy strong{font:900 clamp(44px,8vw,100px)/.88 'Barlow Condensed',Impact,sans-serif;letter-spacing:-1px}
+.intro-road{position:absolute;left:0;right:0;bottom:20%;height:2px;background:#69717c55;box-shadow:0 15px 45px #000}
+.intro-roadline{height:2px;width:100%;background:repeating-linear-gradient(90deg,#ff6b24 0 55px,transparent 55px 110px);animation:roadMove .18s linear infinite}
+.intro-car{position:absolute;z-index:3;width:min(70vw,900px);height:auto;object-fit:contain;right:-110%;bottom:19%;filter:drop-shadow(0 28px 35px #000c);animation:carArrival 3s cubic-bezier(.2,.7,.2,1) .15s both}
+.intro-bottom{bottom:6%;font-size:9px}.intro-bottom b{color:#ff6b24}
+@keyframes carArrival{0%{right:-110%;transform:scale(.72) translateY(35px);opacity:0}18%{opacity:1}55%{right:13%;transform:scale(1) translateY(0)}78%{right:8%;transform:scale(1.04) translateY(-4px)}100%{right:-115%;transform:scale(1.13) translateY(-8px);opacity:1}}
+@keyframes roadMove{to{background-position:110px 0}}
+@keyframes introFade{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media(max-width:650px){.intro-copy{top:20%}.intro-car{width:110vw;bottom:25%}.intro-bottom{font-size:8px;letter-spacing:1px}.intro-topline{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.intro-car{animation:none;right:4%;opacity:1}.vyrox-intro{animation:introFade .2s ease 1.2s forwards}.intro-roadline{animation:none}}
+</style>
+<script>
+window.addEventListener("DOMContentLoaded",()=>{const intro=document.getElementById("vyrox-intro");if(!intro)return;window.setTimeout(()=>{intro.remove();document.body.classList.remove("vyrox-intro-pending")},3900)});
+</script>
+<header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
 <a class="active" href="index.html">Home</a><a href="explore.html">Explore</a><a href="sports-cars.html">Sports Cars</a><a href="compare.html">Compare</a><a href="brands.html">Brands</a><a href="categories.html">Categories</a><a href="performance.html">Performance</a><a href="popular.html">Popular</a><a href="about.html">About</a><a href="f1-special.html">F1 Edition</a>
 </nav></header>
 <main>
