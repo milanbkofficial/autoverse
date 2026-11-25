@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded",()=>{
  const close=()=>modal.classList.remove("open");modal.addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
  const open=h=>{document.querySelector("#av-content").innerHTML=h;modal.classList.add("open")};
  const welcomeSpeech="Welcome to VYROX MOTORS. Your 3D driving experience starts here. Visit our 3D Car Studio to explore selected sports cars in interactive three-dimensional views. Rotate the cars, zoom in, and discover the machines from every angle. Step inside the VYROX 3D Car Studio. Beyond speed. Beyond limits.";
+ const welcomeSeen=()=>{try{return localStorage.getItem("vyroxWelcome3DShown")==="1"}catch(error){return false}};
+ const markWelcomeSeen=()=>{try{localStorage.setItem("vyroxWelcome3DShown","1")}catch(error){}};
  const speakWelcome=()=>{if(!("speechSynthesis" in window)){const b=document.querySelector("[data-vyrox-speak]");if(b)b.textContent="VOICE NOT AVAILABLE";return}window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(welcomeSpeech);utterance.rate=0.91;utterance.pitch=0.88;utterance.volume=1;const voices=window.speechSynthesis.getVoices();const preferred=voices.find(v=>/^en-IN$/i.test(v.lang)&&/natural|neural|premium|enhanced/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/^en-GB$/i.test(v.lang)&&/natural|neural|premium|enhanced/i.test(v.name))||voices.find(v=>/^en-US$/i.test(v.lang)&&/natural|neural|premium|enhanced/i.test(v.name))||voices.find(v=>/^en/i.test(v.lang));if(preferred)utterance.voice=preferred;utterance.onstart=()=>{const b=document.querySelector("[data-vyrox-speak]");if(b)b.textContent="◼ ANNOUNCEMENT PLAYING"};utterance.onend=()=>{const b=document.querySelector("[data-vyrox-speak]");if(b)b.textContent="↻ REPLAY ANNOUNCEMENT"};window.speechSynthesis.speak(utterance)};
- const showWelcome=()=>{open('<div class="eyebrow">VYROX MOTORS · AGENT ANNOUNCEMENT</div><h2>ENTER THE <span style="color:var(--orange)">3D EXPERIENCE.</span></h2><p>Explore selected sports cars in our interactive 3D Car Studio. Rotate, zoom and discover every angle of these machines.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><button class="btn primary" type="button" data-vyrox-speak>▶ HEAR ANNOUNCEMENT</button><a class="btn" href="interior.html">OPEN 3D CAR STUDIO ↗</a></div><p style="font-size:11px;color:#a1aab8;margin-top:14px">Uses your browser’s built-in voice. Voice playback may need a click, depending on browser settings.</p>');const b=document.querySelector("[data-vyrox-speak]");if(b)b.addEventListener("click",speakWelcome);if("speechSynthesis" in window){const attempt=()=>{if(!window.speechSynthesis.speaking)speakWelcome()};window.speechSynthesis.getVoices();setTimeout(attempt,450)}};
- window.addEventListener("vyrox:engine-entry-complete",()=>{if(sessionStorage.getItem("vyroxWelcome3DShown"))return;sessionStorage.setItem("vyroxWelcome3DShown","1");showWelcome()});
+ const showWelcome=()=>{open('<div class="eyebrow">VYROX MOTORS · AGENT ANNOUNCEMENT</div><h2>ENTER THE <span style="color:var(--orange)">3D EXPERIENCE.</span></h2><p>Explore selected sports cars in our interactive 3D Car Studio. Rotate, zoom and discover every angle of these machines.</p><p style="font-size:12px;font-weight:900;letter-spacing:2px;color:var(--orange)">BEYOND SPEED. BEYOND LIMITS. 🏁</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px"><button class="btn primary" type="button" data-vyrox-speak>▶ HEAR ANNOUNCEMENT</button><a class="btn" href="interior.html">OPEN 3D CAR STUDIO ↗</a></div><p style="font-size:11px;color:#a1aab8;margin-top:14px">Uses your browser’s built-in voice. Voice playback may need a click, depending on browser settings.</p>');const b=document.querySelector("[data-vyrox-speak]");if(b)b.addEventListener("click",speakWelcome);if("speechSynthesis" in window){const attempt=()=>{if(!window.speechSynthesis.speaking)speakWelcome()};window.speechSynthesis.getVoices();setTimeout(attempt,450)}};
+ window.addEventListener("vyrox:engine-entry-complete",()=>{if(welcomeSeen())return;markWelcomeSeen();showWelcome()});
 
  const ratingMarkup=c=>{const key="vyroxRating:"+c.id,saved=localStorage.getItem(key)||"50";return '<div class="vyrox-rating" data-rating-box="'+esc(c.id)+'"><label>RATE THIS CAR <strong data-rating-value>'+esc(saved)+'</strong><span>/ 100</span></label><input type="range" min="1" max="100" value="'+esc(saved)+'" data-rating-slider aria-label="Rate '+esc(c.name)+' from 1 to 100"><button type="button" data-rating-save>SUBMIT RATING</button><small data-rating-status>'+(localStorage.getItem(key)?"Your rating is saved on this device.":"Choose a score from 1 to 100.")+'</small></div>'};
  const details=c=>'<div class="av-detail"><img src="'+esc(c.image||"")+'" alt="'+esc(c.name)+'"><div><div class="eyebrow">'+esc(c.brand)+' / '+esc(c.category)+'</div><h2>'+esc(c.name)+'</h2><p>'+esc(c.description||"Explore this model in VYROX MOTORS.")+'</p><div class="av-specs">'+[['Power',c.power],['Engine / motor',c.engine],['Transmission',c.transmission],['Fuel',c.fuel],['Acceleration',c.acceleration],['Top speed',c.topSpeed],['Indicative price',c.price]].map(([k,v])=>'<p><small>'+k+'</small><strong>'+esc(v||"Varies by variant")+'</strong></p>').join("")+'</div><p>'+esc((c.highlights||[]).join(" · "))+'</p>'+ratingMarkup(c)+'<a class="btn primary" href="compare.html">Compare cars</a></div></div>';
@@ -240,43 +242,4 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
   document.addEventListener("pointerdown",firstInteraction,{once:true});
   document.addEventListener("keydown",firstInteraction,{once:true});
-});
-
-
-// VYROX AGENT AI welcome announcement for the 3D Car Studio
-document.addEventListener("DOMContentLoaded",()=>{
-  let alreadyShown=false;
-  try{alreadyShown=sessionStorage.getItem("vyrox3DAgentWelcome")==="shown"}catch(error){}
-  if(alreadyShown)return;
-  try{sessionStorage.setItem("vyrox3DAgentWelcome","shown")}catch(error){}
-  const message="Welcome to VYROX Motors. Your 3D car experience is ready. Explore selected sports cars in interactive three-dimensional views. Rotate the cars, zoom in, and discover their details. Enter the VYROX 3D Car Studio now. Beyond speed. Beyond limits.";
-  const popup=document.createElement("div");
-  popup.className="vyrox-agent-welcome";
-  popup.setAttribute("role","dialog");
-  popup.setAttribute("aria-modal","true");
-  popup.setAttribute("aria-labelledby","vyrox-agent-title");
-  popup.innerHTML='<div class="vyrox-agent-shade"></div><section class="vyrox-agent-card"><div class="eyebrow">VYROX MOTORS · AGENT AI</div><button class="vyrox-agent-close" type="button" aria-label="Close welcome">×</button><div class="vyrox-agent-orb">◈</div><div class="eyebrow">YOUR NEXT EXPERIENCE</div><h2 id="vyrox-agent-title">ENTER THE <span>3D GARAGE.</span></h2><p>'+message+'</p><div class="vyrox-agent-actions"><button class="vyrox-agent-speak" type="button">▶ HEAR AGENT AI</button><a class="vyrox-agent-enter" href="interior.html">EXPLORE 3D CARS ↗</a></div><small>Voice playback may require a tap, depending on your browser.</small></section>';
-  const css=document.createElement("style");
-  css.textContent='.vyrox-agent-welcome{position:fixed;inset:0;z-index:11000;display:grid;place-items:center;padding:18px}.vyrox-agent-shade{position:absolute;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(10px)}.vyrox-agent-card{position:relative;width:min(560px,100%);padding:34px;border:1px solid #ff6b24;border-radius:16px;background:radial-gradient(ellipse at 50% 0%,#27303c,#0b0f15 65%);box-shadow:0 25px 100px #000;color:#f5f6fa;text-align:center}.vyrox-agent-close{position:absolute;right:14px;top:10px;background:none;border:0;color:#fff;font-size:29px;cursor:pointer}.vyrox-agent-orb{width:66px;height:66px;margin:20px auto;border:1px solid #ff6b24;border-radius:50%;display:grid;place-items:center;color:#ff8a45;font-size:32px;box-shadow:0 0 32px #ff6b2440}.vyrox-agent-card h2{font-size:clamp(36px,7vw,58px);margin:12px 0}.vyrox-agent-card h2 span{color:#ff6b24}.vyrox-agent-card p{color:#c2cad5;font-size:14px;line-height:1.8}.vyrox-agent-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px 0 12px}.vyrox-agent-actions button,.vyrox-agent-actions a{padding:13px 17px;border:1px solid #ff6b24;border-radius:5px;background:#ff6b24;color:#111;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:1px;cursor:pointer}.vyrox-agent-actions a{background:transparent;color:#fff}.vyrox-agent-card>small{color:#8e98a6;font-size:10px}@media(max-width:520px){.vyrox-agent-card{padding:28px 18px}.vyrox-agent-card p{font-size:12px}}';
-  document.head.append(css);
-  document.body.append(popup);
-  const speak=popup.querySelector(".vyrox-agent-speak");
-  const close=()=>{if("speechSynthesis"in window)window.speechSynthesis.cancel();popup.remove();css.remove()};
-  popup.querySelector(".vyrox-agent-close").addEventListener("click",close);
-  popup.querySelector(".vyrox-agent-shade").addEventListener("click",close);
-  speak.addEventListener("click",()=>{
-    if(!("speechSynthesis"in window)){speak.textContent="VOICE NOT SUPPORTED";return}
-    window.speechSynthesis.cancel();
-    const utterance=new SpeechSynthesisUtterance(message);
-    utterance.rate=.94;utterance.pitch=1.02;utterance.volume=1;
-    utterance.onstart=()=>{speak.textContent="◼ AGENT AI SPEAKING"};
-    utterance.onend=()=>{speak.textContent="▶ PLAY ANNOUNCEMENT AGAIN"};
-    utterance.onerror=()=>{speak.textContent="▶ TRY VOICE AGAIN"};
-    window.speechSynthesis.speak(utterance);
-  });
-  // Try once on entry; browsers that block autoplay can use the visible voice button.
-  if("speechSynthesis"in window){
-    const attempt=()=>{try{const utterance=new SpeechSynthesisUtterance(message);utterance.rate=.94;utterance.pitch=1.02;window.speechSynthesis.speak(utterance);utterance.onstart=()=>{speak.textContent="◼ AGENT AI SPEAKING"};utterance.onend=()=>{speak.textContent="▶ PLAY ANNOUNCEMENT AGAIN"}}catch(error){}};
-    window.setTimeout(attempt,700);
-  }
 });
