@@ -8,6 +8,8 @@
   <div class="intro-copy"><span>ENGINEERED TO MOVE YOU</span><strong>THE DRIVE<br>STARTS NOW.</strong></div>
   <div class="intro-road"><div class="intro-roadline"></div></div>
   <video class="intro-car" id="intro-car-video" autoplay muted playsinline loop webkit-playsinline preload="auto" aria-label="Moving sports car video footage"><source src="https://videos.pexels.com/video-files/29498801/12698140_4070_2160_24fps.mp4" type="video/mp4"></video>
+  <audio id="intro-engine-audio" preload="auto" src="https://sfxmint.com/dl/mechanical-engine-91.mp3"></audio>
+  <button class="intro-engine-button" id="intro-engine-start" type="button">▶ START ENGINE</button>
   <div class="intro-bottom"><span>BEYOND SPEED. BEYOND LIMITS.</span><span>INITIALISING EXPERIENCE <b>●</b></span></div>
 </div>
 <style>
@@ -19,15 +21,15 @@
 .intro-road{position:absolute;left:0;right:0;bottom:20%;height:2px;background:#69717c55;box-shadow:0 15px 45px #000}
 .intro-roadline{height:2px;width:100%;background:repeating-linear-gradient(90deg,#ff6b24 0 55px,transparent 55px 110px);animation:roadMove .18s linear infinite}
 .intro-car{position:absolute;z-index:1;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center;opacity:.92;filter:brightness(.68) saturate(1.08);animation:videoReveal .8s ease both}
-.intro-bottom{bottom:6%;font-size:9px}.intro-bottom b{color:#ff6b24}
+.intro-bottom{bottom:6%;font-size:9px}.intro-bottom b{color:#ff6b24}.intro-engine-button{position:absolute;z-index:5;left:8%;bottom:13%;padding:13px 20px;border:1px solid #ff6b24;background:#10151dcc;color:#fff;font:800 11px Arial,sans-serif;letter-spacing:2px;cursor:pointer;border-radius:3px;box-shadow:0 0 24px #ff6b2433;transition:background .2s,transform .2s}.intro-engine-button:hover{background:#ff6b24;transform:translateY(-2px)}.intro-engine-button:focus-visible{outline:2px solid white;outline-offset:4px}
 @keyframes videoReveal{from{opacity:0;transform:scale(1.04)}to{opacity:.92;transform:scale(1)}}
 @keyframes roadMove{to{background-position:110px 0}}
 @keyframes introFade{to{opacity:0;visibility:hidden;pointer-events:none}}
-@media(max-width:650px){.intro-copy{top:20%}.intro-car{object-position:58% center}.intro-bottom{font-size:8px;letter-spacing:1px}.intro-topline{font-size:9px}}
+@media(max-width:650px){.intro-copy{top:20%}.intro-car{object-position:58% center}.intro-bottom{font-size:8px;letter-spacing:1px}.intro-engine-button{bottom:16%;left:6%;padding:11px 14px;font-size:10px}.intro-topline{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.intro-car{animation:none;opacity:.92}.vyrox-intro{animation:introFade .2s ease 1.2s forwards}.intro-roadline{animation:none}}
 </style>
 <script>
-window.addEventListener("DOMContentLoaded",()=>{const intro=document.getElementById("vyrox-intro");if(!intro)return;const video=document.getElementById("intro-car-video");if(video){video.muted=true;video.defaultMuted=true;video.playsInline=true;const start=()=>video.play().catch(()=>{});video.addEventListener("loadeddata",start,{once:true});start()}window.setTimeout(()=>{intro.remove();document.body.classList.remove("vyrox-intro-pending")},6800)});
+window.addEventListener("DOMContentLoaded",()=>{const intro=document.getElementById("vyrox-intro");if(!intro)return;const video=document.getElementById("intro-car-video");if(video){video.muted=true;video.defaultMuted=true;video.playsInline=true;const start=()=>video.play().catch(()=>{});video.addEventListener("loadeddata",start,{once:true});start()}const engine=document.getElementById("intro-engine-audio");const engineButton=document.getElementById("intro-engine-start");if(engine&&engineButton){engine.volume=.58;engineButton.addEventListener("click",()=>{engine.currentTime=0;engine.play().then(()=>{engineButton.textContent="ENGINE ROARING";engineButton.disabled=true}).catch(()=>{engineButton.textContent="TAP TO TRY AGAIN"})})}window.setTimeout(()=>{intro.remove();document.body.classList.remove("vyrox-intro-pending");if(engine){engine.pause();engine.currentTime=0}},8800)});
 </script>
 <header><a class="logo" href="index.html">VY<span>ROX</span></a><nav>
 <a class="active" href="index.html">Home</a><a href="explore.html">Explore</a><a href="sports-cars.html">Sports Cars</a><a href="compare.html">Compare</a><a href="brands.html">Brands</a><a href="categories.html">Categories</a><a href="performance.html">Performance</a><a href="popular.html">Popular</a><a href="about.html">About</a><a href="f1-special.html">F1 Edition</a>
