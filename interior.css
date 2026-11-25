@@ -20,3 +20,12 @@
 .model-empty strong{font-size:10px}.model-empty span{font-size:10px;max-width:520px}
 .model-stage{min-height:clamp(300px,48vw,540px)}
 @media(max-width:600px){#car-canvas{height:350px}.model-stage{min-height:350px}.studio-btn{padding:9px;font-size:8px}}
+
+/* Embedded creator-published 3D model viewer */
+#real-car-viewer{display:block;width:100%;height:clamp(320px,52vw,620px);border:0;border-radius:8px;background:#080c12}
+.model-stage:has(#real-car-viewer){min-height:clamp(320px,52vw,620px)}
+.model-stage #model-empty{inset:0;bottom:0;align-items:center;justify-content:center;text-align:center;padding:28px;background:radial-gradient(ellipse at center,rgba(38,49,62,.94),rgba(7,10,15,.98))}
+.model-stage #model-empty strong{font-size:13px;letter-spacing:2px}
+.model-stage #model-empty span{font-size:12px;max-width:480px}
+#cabin-gallery a{color:var(--orange);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){#real-car-viewer{height:390px}.model-stage:has(#real-car-viewer){min-height:390px}}
