@@ -249,3 +249,16 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.addEventListener("pointerdown",firstInteraction,{once:true});
   document.addEventListener("keydown",firstInteraction,{once:true});
 });
+
+
+// VYROX DRIVE game hub navigation entry
+document.addEventListener("DOMContentLoaded",()=>{
+  const nav=document.querySelector("header nav");
+  if(nav&&!nav.querySelector('a[href="vyrox-drive.html"]')){
+    const link=document.createElement("a");
+    link.href="vyrox-drive.html";
+    link.textContent="VYROX DRIVE";
+    link.setAttribute("aria-label","Open VYROX DRIVE game experience");
+    nav.appendChild(link);
+  }
+});
