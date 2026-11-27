@@ -13,8 +13,8 @@
 #vxMenu{position:fixed;z-index:9;top:108px;right:16px;width:min(370px,calc(100% - 32px));display:none;padding:16px;background:linear-gradient(145deg,#111d2bf2,#05080df5);border:1px solid #ff8a5555;border-radius:12px;box-shadow:0 18px 60px #000c;backdrop-filter:blur(18px);max-height:calc(100vh - 130px);overflow:auto}
 #vxMenu.open{display:block}.vxHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.vxHead strong{font:900 18px 'Barlow Condensed';letter-spacing:2px}.vxSub{color:#9aaabd;font-size:9px;letter-spacing:1.4px}.vxSection{border-top:1px solid #ffffff1c;padding:12px 0}.vxLabel{font-size:9px;font-weight:900;letter-spacing:1.6px;color:#ffad83;margin-bottom:8px}.vxChoices{display:flex;gap:6px;flex-wrap:wrap}.vxChoices button,#vxClose{border:1px solid #ffffff30;background:#0b121c;color:#eaf2fb;border-radius:5px;padding:9px 11px;font:800 9px Manrope;cursor:pointer}.vxChoices button.active{border-color:#ff773b;background:#35190f;color:#ffc09f}.vxPack{padding:12px;border:1px solid #55cfff44;background:linear-gradient(120deg,#0c1a29,#11131b);border-radius:8px}.vxPack b{display:block;font-size:15px;letter-spacing:.5px}.vxPack p{color:#aab8c8;font-size:10px;line-height:1.6;margin:7px 0}.vxMeter{height:5px;background:#253140;border-radius:8px;overflow:hidden}.vxMeter i{display:block;width:0;height:100%;background:#ff773b}.vxFoot{color:#8e9bad;font-size:9px;line-height:1.6;margin-top:9px}.vxBadge{display:inline-block;color:#ffc09f;border:1px solid #ff773b66;border-radius:4px;padding:4px 6px;font-size:8px;font-weight:900;letter-spacing:1px}
 </style></head><body><div id="stage"></div>
-<div class="top"><div class="brand">VYROX <span>DRIVE</span></div><div class="hud"><span class="chip">3D TEST DRIVE · BUILD 01</span><button class="action" id="sound">SOUND: OFF</button><button class="action" id="lights">LIGHTS</button><button class="action" id="camera">CAMERA</button><button class="action" id="reset">RESET</button></div></div>
-<div class="notice">NEON CITY NIGHT RUN · VYROX DRIVE</div><a class="back" href="vyrox-drive.html">GARAGE ↗</a>
+<div class="top"><div class="brand">VYROX <span>DRIVE</span></div><div class="hud"><span class="chip">3D TEST DRIVE · BUILD 01</span><button class="action" id="sound">SOUND: OFF</button><button class="action" id="lights">LIGHTS</button><button class="action" id="camera">CAMERA</button><button class="action" id="reset">RESET</button><button class="action" id="walkToggle">WALK MODE</button><button class="action" id="customizeToggle">CUSTOMIZE</button></div></div>
+<div class="notice">NEON CITY NIGHT RUN · VYROX DRIVE</div><div id="walkPanel" style="position:fixed;z-index:7;right:16px;top:108px;display:none;width:220px;padding:13px;background:#07131ded;border:1px solid #27cfff88;border-radius:9px;color:#fff;font-size:10px;line-height:1.7"><b style="color:#76e6ff;letter-spacing:1px">VYROX ON FOOT</b><p style="color:#b8c7d8">WASD / arrow keys to walk. Press E near the service centre to interact. Press WALK MODE to return to driving.</p><div id="walkStatus">Explore the city district.</div></div><div id="customPanel" style="position:fixed;z-index:7;right:16px;top:108px;display:none;width:220px;padding:13px;background:#07131ded;border:1px solid #ff8a5588;border-radius:9px;color:#fff;font-size:10px"><b style="color:#ffad83;letter-spacing:1px">PAINT STUDIO</b><p style="color:#b8c7d8">Choose a finish for your current VYROX car.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="dash-btn" data-paint="0x9ba8b8">SILVER</button><button class="dash-btn" data-paint="0x151a24">BLACK</button><button class="dash-btn" data-paint="0xb51f2b">RED</button><button class="dash-btn" data-paint="0x176c9d">BLUE</button><button class="dash-btn" data-paint="0xe4e7ec">WHITE</button></div></div><a class="back" href="vyrox-drive.html">GARAGE ↗</a>
 <div class="help"><b>KEYBOARD</b><br>W / ↑ accelerate · S / ↓ brake · A D / ← → steer<br>SPACE handbrake · C camera · L headlights · R reset<br><span style="color:#ffad83">Game-only driving simulation.</span></div>
 
 <button class="cockpit-toggle" id="cockpitToggle">OPEN COCKPIT CONTROLS</button>
@@ -99,6 +99,14 @@ for(const x of [-.72,.72]){box(car,.12,.18,3.25,dark,x,.58,0);box(car,.22,.22,.3
 for(const x of [-1,1]){const mirror=box(car,.28,.12,.22,paint,x*1.02,1.28,.42);mirror.rotation.z=x*.12;box(car,.22,.05,.16,glass,x*1.02,1.3,.42)}
 const underglow=new THREE.PointLight(0x24bfff,4.5,9);underglow.position.set(0,.28,0);car.add(underglow);const headGlow=new THREE.PointLight(0xc8e7ff,8,17,2);headGlow.position.set(0,1,-2.5);car.add(headGlow);const tailGlow=new THREE.PointLight(0xff183d,4,7,2);tailGlow.position.set(0,1,2.3);car.add(tailGlow);
 car.position.set(0,0,7);
+// Walkable avatar for the on-foot city exploration mode.
+const player=new THREE.Group();scene.add(player);player.position.set(3,0,7);
+const avatarMat=new THREE.MeshStandardMaterial({color:0x202b3b,roughness:.8});
+const skinMat=new THREE.MeshStandardMaterial({color:0xc88e68,roughness:.9});
+const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.62,4,8),avatarMat);torso.position.y=1.12;player.add(torso);
+const head=new THREE.Mesh(new THREE.SphereGeometry(.23,12,10),skinMat);head.position.y=1.78;player.add(head);
+for(const sx of [-.16,.16]){const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.105,.48,3,6),new THREE.MeshStandardMaterial({color:0x151a22}));leg.position.set(sx,.43,0);player.add(leg)}
+player.visible=false;let walkMode=false;
 const headLeft=new THREE.SpotLight(0xc8e6ff,42,62,Math.PI/7,.55,1.4);headLeft.position.set(-.68,.92,-2.15);headLeft.target.position.set(-1,0,-26);car.add(headLeft,headLeft.target);const headRight=new THREE.SpotLight(0xc8e6ff,42,62,Math.PI/7,.55,1.4);headRight.position.set(.68,.92,-2.15);headRight.target.position.set(1,0,-26);car.add(headRight,headRight.target);
 const keys={};let velocity=0,steer=0,drift=0,heading=0,camMode=0,lights=false,audio=false,ctx=null,osc=null,gain=null;
 function setLight(){lights=!lights;document.querySelector('#lights').classList.toggle('active',lights);headLeft.intensity=headRight.intensity=lights?85:42;car.children.filter(x=>x.material&&x.material.emissive).forEach(x=>{if(x.material.color.getHex()===0xffffff)x.material.emissive.setHex(lights?0xffffff:0xaaaaaa)})}
@@ -117,6 +125,21 @@ wheels.forEach(w=>w.rotation.x+=velocity*dt*1.8);// Keep the front wheel meshes 
 if(camMode===0){const offset=new THREE.Vector3(0,5.2,10).applyAxisAngle(new THREE.Vector3(0,1,0),heading);camera.position.lerp(target.clone().add(offset),1-Math.pow(.001,dt));camera.lookAt(car.position.x,1,car.position.z-5)}
 else if(camMode===1){camera.position.set(car.position.x,2.0,car.position.z+.2);camera.lookAt(car.position.x,1.5,car.position.z-12)}
 else{const offset=new THREE.Vector3(8,3.5,7).applyAxisAngle(new THREE.Vector3(0,1,0),heading);camera.position.lerp(target.clone().add(offset),1-Math.pow(.001,dt));camera.lookAt(car.position)}
+if(walkMode){
+ const move=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0);
+ const turn=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0);
+ player.rotation.y-=turn*dt*2.2;
+ const step=move*dt*7;
+ player.position.x-=Math.sin(player.rotation.y)*step;
+ player.position.z-=Math.cos(player.rotation.y)*step;
+ player.position.x=THREE.MathUtils.clamp(player.position.x,-95,95);
+ player.position.z=THREE.MathUtils.clamp(player.position.z,-325,35);
+ camera.position.lerp(new THREE.Vector3(player.position.x+Math.sin(player.rotation.y)*4,player.position.y+3.1,player.position.z+Math.cos(player.rotation.y)*6),1-Math.pow(.002,dt));
+ camera.lookAt(player.position.x,1.2,player.position.z- Math.cos(player.rotation.y)*2);
+ const nearService=Math.hypot(player.position.x-35,player.position.z+205)<9;
+ document.querySelector('#walkStatus').textContent=nearService?'Press E to enter the service centre (demo interaction).':'Explore the district · Find the orange service centre.';
+ if(keys.KeyE&&nearService){document.querySelector('#walkStatus').textContent='SERVICE CENTRE · Vehicle service menu coming soon.';keys.KeyE=false;}
+}
 const bayDistance=Math.hypot(car.position.x+37,car.position.z+111);const missionState=document.querySelector('#missionState');if(bayDistance<3.2&&Math.abs(velocity)<1.8){missionState.textContent='STATUS: CHALLENGE COMPLETE ✓';missionState.style.color='#7dffb0';document.querySelector('#missionText').textContent='Perfect stop. Parking Bay 01 completed. Reset to replay the drive.'}else if(bayDistance<8){missionState.textContent='STATUS: ALIGN AND STOP';missionState.style.color='#ffe08a'}else{missionState.textContent='STATUS: IN PROGRESS';missionState.style.color='#ffad83'}document.querySelector('#speed').textContent=String(Math.round(Math.abs(velocity)*3.6)).padStart(3,'0');document.querySelector('#dashSpeed').textContent=String(Math.round(Math.abs(velocity)*3.6)).padStart(3,'0');if(audio&&ctx)osc.frequency.setTargetAtTime(55+Math.abs(velocity)*3.3,ctx.currentTime,.05);renderer.render(scene,camera)}
 
 const cockpit=document.querySelector('#cockpit'),cockpitToggle=document.querySelector('#cockpitToggle');
@@ -131,6 +154,19 @@ document.querySelector('#closePhone').onclick=()=>document.querySelector('#phone
 document.querySelectorAll('[data-phone]').forEach(btn=>btn.onclick=()=>{const p=btn.dataset.phone;document.querySelector('#phoneScreen').innerHTML=({NAVIGATION:'NAVIGATION ONLINE<br>Route: Neon Boulevard<br>Next: City Loop · 2.4 km',MUSIC:'VYROX RADIO<br>Original neon-drive mix<br>Use SOUND button for audio',MISSIONS:'ACTIVE CHALLENGE<br>Night Boulevard Cruise<br>Practice mode',GARAGE:'GARAGE LINKED<br>10-car collection concept<br>Choose vehicles in garage'})[p]});
 document.querySelectorAll('.dash-pedal').forEach(btn=>{const k=btn.dataset.key;btn.onpointerdown=e=>{e.preventDefault();bind(k,true)};['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev,()=>bind(k,false)))});
 
+document.querySelector('#walkToggle').onclick=()=>{
+ walkMode=!walkMode;player.visible=walkMode;car.visible=!walkMode;
+ document.querySelector('#walkToggle').textContent=walkMode?'DRIVE MODE':'WALK MODE';
+ document.querySelector('#walkPanel').style.display=walkMode?'block':'none';
+ document.querySelector('#customPanel').style.display='none';
+ if(walkMode){velocity=0;player.position.set(car.position.x+3,0,car.position.z+2);player.rotation.y=0;document.querySelector('.help').innerHTML='<b>ON FOOT</b><br>W / ↑ walk · S / ↓ back · A / D turn<br>E interact near service centre';}
+ else{document.querySelector('.help').innerHTML='<b>KEYBOARD</b><br>W / ↑ accelerate · S / ↓ brake · A D / ← → steer<br>SPACE handbrake · C camera · L headlights · R reset<br><span style="color:#ffad83">Game-only driving simulation.</span>';}
+};
+document.querySelector('#customizeToggle').onclick=()=>{
+ const p=document.querySelector('#customPanel');p.style.display=p.style.display==='block'?'none':'block';
+ document.querySelector('#walkPanel').style.display='none';
+};
+document.querySelectorAll('[data-paint]').forEach(b=>b.onclick=()=>{paint.color.setHex(parseInt(b.dataset.paint));});
 const vxMenu=document.querySelector('#vxMenu');
 document.querySelector('#vxGraphicsBtn').onclick=()=>vxMenu.classList.toggle('open');
 document.querySelector('#vxClose').onclick=()=>vxMenu.classList.remove('open');
