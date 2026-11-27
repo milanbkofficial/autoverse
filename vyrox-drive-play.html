@@ -121,7 +121,10 @@ const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);
 if(forward)velocity=Math.min(velocity+26*dt,65);else if(back)velocity=Math.max(velocity-48*dt,-12);else velocity*=Math.pow(.985,dt*60);
 const steerInput=(right?1:0)-(left?1:0);steer=THREE.MathUtils.damp(steer,steerInput,5,dt);const speedFactor=Math.min(Math.abs(velocity)/18,1);heading-=steer*speedFactor*(hand?1.65:1.05)*dt*(velocity>=0?1:-1);drift=THREE.MathUtils.damp(drift,hand&&Math.abs(velocity)>8?steer*.48:0,3,dt);
 car.rotation.y=heading+drift*.18;car.position.x+=Math.sin(heading)*velocity*dt*.22;car.position.z-=Math.cos(heading)*velocity*dt*.22;car.position.x=THREE.MathUtils.clamp(car.position.x,-52,52);
-wheels.forEach(w=>w.rotation.x+=velocity*dt*1.8);// Keep the front wheel meshes aligned with their axle; steering is handled by the vehicle body to avoid visual wobble.car.rotation.z=THREE.MathUtils.damp(car.rotation.z,-steer*speedFactor*.055,4,dt);const target=new THREE.Vector3(car.position.x,car.position.y+2.0,car.position.z);
+wheels.forEach(w=>w.rotation.x+=velocity*dt*1.8);
+// Keep the front wheel meshes aligned with their axle; steering is handled by the vehicle body to avoid visual wobble.
+car.rotation.z=THREE.MathUtils.damp(car.rotation.z,-steer*speedFactor*.055,4,dt);
+const target=new THREE.Vector3(car.position.x,car.position.y+2.0,car.position.z);
 if(camMode===0){const offset=new THREE.Vector3(0,5.2,10).applyAxisAngle(new THREE.Vector3(0,1,0),heading);camera.position.lerp(target.clone().add(offset),1-Math.pow(.001,dt));camera.lookAt(car.position.x,1,car.position.z-5)}
 else if(camMode===1){camera.position.set(car.position.x,2.0,car.position.z+.2);camera.lookAt(car.position.x,1.5,car.position.z-12)}
 else{const offset=new THREE.Vector3(8,3.5,7).applyAxisAngle(new THREE.Vector3(0,1,0),heading);camera.position.lerp(target.clone().add(offset),1-Math.pow(.001,dt));camera.lookAt(car.position)}
