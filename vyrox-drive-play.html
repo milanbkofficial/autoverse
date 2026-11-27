@@ -8,6 +8,10 @@
 #cockpit{position:fixed;z-index:6;left:50%;bottom:14px;transform:translateX(-50%);width:min(850px,calc(100% - 24px));display:none;grid-template-columns:1fr 1.3fr 1fr;gap:9px;padding:10px;background:linear-gradient(145deg,#101a27ee,#05080dee);border:1px solid #9fb4c544;border-radius:12px;box-shadow:0 12px 50px #000b;backdrop-filter:blur(16px)}
 #cockpit.open{display:grid}.dash-group{display:flex;flex-wrap:wrap;align-content:center;gap:6px}.dash-label{width:100%;font:800 9px Manrope;letter-spacing:2px;color:#ff9b70;margin:0 0 2px}.dash-btn{border:1px solid #ffffff30;background:#0b111b;color:#eaf2fb;border-radius:5px;padding:8px 9px;font:800 9px Manrope;cursor:pointer}.dash-btn.on{border-color:#ff773b;color:#ffb18b;background:#35190f}.dash-screen{background:#07131b;border:1px solid #42c8ff55;border-radius:7px;padding:8px;color:#9ce6ff;min-height:74px;font:700 10px/1.6 Manrope}.dash-screen b{color:#fff}.dash-wheel{width:72px;height:72px;border:8px solid #8995a4;border-radius:50%;margin:auto;position:relative;box-shadow:inset 0 0 0 3px #141a22}.dash-wheel:after{content:'V';position:absolute;inset:18px;border-radius:50%;background:#d7e0e9;color:#10151c;display:grid;place-items:center;font-weight:900}.dash-pedals{display:flex;gap:6px;justify-content:center}.dash-pedal{background:linear-gradient(#647180,#202936);border:1px solid #aeb8c455;border-radius:5px;color:white;padding:10px 12px;font:900 9px Manrope;cursor:pointer}.phone-panel{display:none;position:fixed;z-index:8;right:18px;bottom:190px;width:220px;background:#080e18f2;border:1px solid #40cfff88;border-radius:16px;padding:13px;box-shadow:0 12px 40px #000b}.phone-panel.open{display:block}.phone-head{display:flex;justify-content:space-between;color:#9ce6ff;font-size:10px;font-weight:900;margin-bottom:10px}.phone-app{width:100%;text-align:left;margin:4px 0}.cockpit-hint{color:#91a1b5;font-size:9px;line-height:1.5;grid-column:1/-1;text-align:center}
 @media(max-width:650px){#cockpit{grid-template-columns:1fr 1fr;bottom:8px;padding:7px;gap:6px}.dash-wheel{width:54px;height:54px}.phone-panel{bottom:220px;right:8px}}
+
+/* VYROX premium graphics and content manager */
+#vxMenu{position:fixed;z-index:9;top:108px;right:16px;width:min(370px,calc(100% - 32px));display:none;padding:16px;background:linear-gradient(145deg,#111d2bf2,#05080df5);border:1px solid #ff8a5555;border-radius:12px;box-shadow:0 18px 60px #000c;backdrop-filter:blur(18px);max-height:calc(100vh - 130px);overflow:auto}
+#vxMenu.open{display:block}.vxHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.vxHead strong{font:900 18px 'Barlow Condensed';letter-spacing:2px}.vxSub{color:#9aaabd;font-size:9px;letter-spacing:1.4px}.vxSection{border-top:1px solid #ffffff1c;padding:12px 0}.vxLabel{font-size:9px;font-weight:900;letter-spacing:1.6px;color:#ffad83;margin-bottom:8px}.vxChoices{display:flex;gap:6px;flex-wrap:wrap}.vxChoices button,#vxClose{border:1px solid #ffffff30;background:#0b121c;color:#eaf2fb;border-radius:5px;padding:9px 11px;font:800 9px Manrope;cursor:pointer}.vxChoices button.active{border-color:#ff773b;background:#35190f;color:#ffc09f}.vxPack{padding:12px;border:1px solid #55cfff44;background:linear-gradient(120deg,#0c1a29,#11131b);border-radius:8px}.vxPack b{display:block;font-size:15px;letter-spacing:.5px}.vxPack p{color:#aab8c8;font-size:10px;line-height:1.6;margin:7px 0}.vxMeter{height:5px;background:#253140;border-radius:8px;overflow:hidden}.vxMeter i{display:block;width:0;height:100%;background:#ff773b}.vxFoot{color:#8e9bad;font-size:9px;line-height:1.6;margin-top:9px}.vxBadge{display:inline-block;color:#ffc09f;border:1px solid #ff773b66;border-radius:4px;padding:4px 6px;font-size:8px;font-weight:900;letter-spacing:1px}
 </style></head><body><div id="stage"></div>
 <div class="top"><div class="brand">VYROX <span>DRIVE</span></div><div class="hud"><span class="chip">3D TEST DRIVE · BUILD 01</span><button class="action" id="sound">SOUND: OFF</button><button class="action" id="lights">LIGHTS</button><button class="action" id="camera">CAMERA</button><button class="action" id="reset">RESET</button></div></div>
 <div class="notice">NEON CITY NIGHT RUN · VYROX DRIVE</div><a class="back" href="vyrox-drive.html">GARAGE ↗</a>
@@ -22,6 +26,15 @@
  <div class="cockpit-hint">Dashboard and phone functions are simulated game controls. Keyboard driving remains active.</div>
 </div>
 <div class="phone-panel" id="phonePanel"><div class="phone-head"><span>VYROX LINK</span><button class="dash-btn" id="closePhone">CLOSE</button></div><div class="dash-screen" id="phoneScreen">NAVIGATION ONLINE<br>Route: Neon Boulevard<br>Next: City Loop · 2.4 km</div><button class="dash-btn phone-app" data-phone="NAVIGATION">MAP / NAVIGATION</button><button class="dash-btn phone-app" data-phone="MUSIC">MUSIC PLAYER</button><button class="dash-btn phone-app" data-phone="MISSIONS">DRIVE MISSIONS</button><button class="dash-btn phone-app" data-phone="GARAGE">GARAGE STATUS</button></div>
+
+<button class="action" id="vxGraphicsBtn" style="position:fixed;z-index:8;top:64px;left:16px;pointer-events:auto">GRAPHICS / CONTENT</button>
+<section id="vxMenu" aria-label="Graphics and content settings">
+ <div class="vxHead"><div><strong>VYROX DISPLAY SYSTEM</strong><div class="vxSub">GRAPHICS · PERFORMANCE · CONTENT</div></div><button id="vxClose">CLOSE</button></div>
+ <div class="vxSection"><div class="vxLabel">RENDER QUALITY</div><div class="vxChoices"><button data-quality="balanced" class="active">BALANCED</button><button data-quality="high">HIGH</button><button data-quality="ultra">ULTRA</button></div><div class="vxFoot" id="vxQualityNote">Balanced rendering selected for smoother browser performance.</div></div>
+ <div class="vxSection"><div class="vxLabel">ENVIRONMENT DISPLAY</div><div class="vxChoices"><button class="active" data-env="night">NEON NIGHT</button><button data-env="rain">RAIN EFFECT</button></div><div class="vxFoot">Environment presets are being expanded: modern city, mountain roads, Dubai-inspired skyline and racing circuit.</div></div>
+ <div class="vxSection"><div class="vxLabel">5.2 GB PREMIUM CONTENT PACK</div><div class="vxPack"><span class="vxBadge">PLANNED DOWNLOAD SIZE</span><b>VYROX ULTRA ASSET PACK · 5.2 GB</b><p>Target contents: high-detail vehicle models and interiors, 4K textures, environment assets, lighting and reflections, sound packs and additional tracks.</p><div class="vxMeter"><i></i></div><p><b style="font-size:10px;color:#ffc09f">NOT YET HOSTED</b><br>The downloadable files must be built and uploaded before a real download can start. This panel does not pretend that 5.2 GB has already been downloaded.</p></div></div>
+ <div class="vxSection"><div class="vxLabel">DISPLAY TARGET</div><div class="vxSub">FULLSCREEN · RESPONSIVE HUD · DIGITAL COCKPIT · SHADOWS · REFLECTIONS</div></div>
+</section>
 <div class="speed"><strong id="speed">000</strong><small>KM/H · SIMULATED</small></div>
 <div class="touch"><div class="pad"><button data-key="ArrowLeft">◀</button><button data-key="ArrowRight">▶</button><button data-key="Space">DRIFT</button><button data-key="KeyC">CAM</button></div><div class="pedals"><button data-key="ArrowUp">ACCEL</button><button data-key="ArrowDown">BRAKE</button></div></div>
 <script type="module">
@@ -82,5 +95,24 @@ document.querySelector('#phoneBtn').onclick=()=>document.querySelector('#phonePa
 document.querySelector('#closePhone').onclick=()=>document.querySelector('#phonePanel').classList.remove('open');
 document.querySelectorAll('[data-phone]').forEach(btn=>btn.onclick=()=>{const p=btn.dataset.phone;document.querySelector('#phoneScreen').innerHTML=({NAVIGATION:'NAVIGATION ONLINE<br>Route: Neon Boulevard<br>Next: City Loop · 2.4 km',MUSIC:'VYROX RADIO<br>Original neon-drive mix<br>Use SOUND button for audio',MISSIONS:'ACTIVE CHALLENGE<br>Night Boulevard Cruise<br>Practice mode',GARAGE:'GARAGE LINKED<br>10-car collection concept<br>Choose vehicles in garage'})[p]});
 document.querySelectorAll('.dash-pedal').forEach(btn=>{const k=btn.dataset.key;btn.onpointerdown=e=>{e.preventDefault();bind(k,true)};['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev,()=>bind(k,false)))});
+
+const vxMenu=document.querySelector('#vxMenu');
+document.querySelector('#vxGraphicsBtn').onclick=()=>vxMenu.classList.toggle('open');
+document.querySelector('#vxClose').onclick=()=>vxMenu.classList.remove('open');
+document.querySelectorAll('[data-quality]').forEach(btn=>btn.onclick=()=>{
+ document.querySelectorAll('[data-quality]').forEach(x=>x.classList.toggle('active',x===btn));
+ const q=btn.dataset.quality;
+ renderer.setPixelRatio(Math.min(devicePixelRatio,q==='ultra'?2:q==='high'?1.5:1.15));
+ renderer.shadowMap.enabled=q!=='balanced';
+ moon.shadow.mapSize.set(q==='ultra'?4096:q==='high'?2048:1024,q==='ultra'?4096:q==='high'?2048:1024);
+ moon.shadow.needsUpdate=true;
+ document.querySelector('#vxQualityNote').textContent=q==='ultra'?'Ultra rendering enabled. Performance depends on your device GPU.':q==='high'?'High rendering enabled.':'Balanced rendering selected for smoother browser performance.';
+});
+document.querySelectorAll('[data-env]').forEach(btn=>btn.onclick=()=>{
+ document.querySelectorAll('[data-env]').forEach(x=>x.classList.toggle('active',x===btn));
+ document.querySelector('.notice').textContent=btn.dataset.env==='rain'?'RAIN EFFECT · NEON CITY NIGHT RUN':'NEON CITY NIGHT RUN · VYROX DRIVE';
+ rain.material.opacity=btn.dataset.env==='rain'?.72:.48;
+});
+
 animate();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 </script></body></html>
