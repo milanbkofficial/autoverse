@@ -12,7 +12,7 @@
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 const stage=document.querySelector('#stage');const scene=new THREE.Scene();scene.background=new THREE.Color(0x91b8d2);scene.fog=new THREE.Fog(0x91b8d2,75,260);
-const camera=new THREE.PerspectiveCamera( sixty=62,innerWidth/innerHeight,.1,500);const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;stage.appendChild(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(62,innerWidth/innerHeight,.1,500);const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;stage.appendChild(renderer.domElement);
 scene.add(new THREE.HemisphereLight(0xddeeff,0x34402b,2));const sun=new THREE.DirectionalLight(0xfff1d7,3);sun.position.set(-35,65,25);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(500,500),new THREE.MeshStandardMaterial({color:0x4a634d,roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.12;ground.receiveShadow=true;scene.add(ground);
 const road=new THREE.Mesh(new THREE.PlaneGeometry(16,420),new THREE.MeshStandardMaterial({color:0x252a30,roughness:.94}));road.rotation.x=-Math.PI/2;road.position.set(0,0,-100);road.receiveShadow=true;scene.add(road);
@@ -28,7 +28,7 @@ car.position.set(0,0,7);
 const keys={};let velocity=0,steer=0,drift=0,heading=0,camMode=0,lights=false,audio=false,ctx=null,osc=null,gain=null;
 function setLight(){lights=!lights;document.querySelector('#lights').classList.toggle('active',lights);car.children.filter(x=>x.material&&x.material.emissive).forEach(x=>{if(x.material.color.getHex()===0xffffff)x.material.emissive.setHex(lights?0xffffff:0xaaaaaa)})}
 function reset(){velocity=0;steer=0;drift=0;heading=0;car.position.set(0,0,7);car.rotation.y=0}
-function toggleAudio(){audio=!audio;document.querySelector('#sound').textContent='SOUND: '+(audio?'ON':'OFF');if(audio&&!ctx){ctx=new AudioContext();osc=ctx.createOscillator();gain=ctx.createGain();osc.type='sawtooth';osc.frequency.value=65;gain.gain.value=0;osc.connect(gain);gain.connect(ctx.destination);osc.start()}if(ctx){if(audio)ctx.resume();gain.gain.setTargetAtTime(audio?.035:0,ctx.currentTime,.08)}}
+function toggleAudio(){audio=!audio;document.querySelector('#sound').textContent='SOUND: '+(audio?'ON':'OFF');if(audio&&!ctx){ctx=new AudioContext();osc=ctx.createOscillator();gain=ctx.createGain();osc.type='sawtooth';osc.frequency.value=65;gain.gain.value=0;osc.connect(gain);gain.connect(ctx.destination);osc.start()}if(ctx){if(audio)ctx.resume();gain.gain.setTargetAtTime(audio ? 0.035 : 0,ctx.currentTime,.08)}}
 function bind(key,down){keys[key]=down}
 addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(!keys[e.code]){if(e.code==='KeyC')camMode=(camMode+1)%3;if(e.code==='KeyL')setLight();if(e.code==='KeyR')reset()}bind(e.code,true)});
 addEventListener('keyup',e=>bind(e.code,false));
